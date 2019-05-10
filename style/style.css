@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+ .container-fluid {
+    margin: 0px;
+    padding: 0px;
+} 
+.main{
+    max-width: 900px;
+}
+.gears {
+    max-width: 400px;
+    max-height: 400px;
+    float: left;
+}
+.row {
+    clear: both;
+}
+
+.column {
+    max-width: 450px;
+    float: left;
+    padding: 15px;
+}
+.img-clear {
+    clear: both;
+}
+
+.heading-start{
+    font-size: 20px;
+}
+p {
+    font-size: 16px;
+}
+#filter-bikes{
+   display: none;
+   
+}
+#showBikes{
+    /*display: none;
+}*/
+background-color: lightgray;
+}
+.nav-heading{
+    background-color: black;
+    color: white;
+    height: 30px;
+   
+}
+
+.asaid-nav{
+    display: none;
+    background-color: darkcyan;
+    height: fit-content;
+    padding-bottom: 20px;
+}
+
+/*#logo{
+    /*background-color: blue;
+}*/
+
+.header{
+    background-color: lightblue;
+}
+
+.bikes-render :hover{
+ 
+ background-color: darkgray;
+}
+
+.bikes-render{
+    font-size: 12px;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="autor" content="Nikola Dalchevski">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cabin|Indie+Flower" rel="stylesheet">
+   
+</head>
+
+<body>
+    <header class="container-fluid header">
+        <div class="row no-gutters" >
+            <div id="logo" class="col-lg-1" >
+                <img src="Images/logo1.png" alt="Logo-BBG" height="130px;" >
+            </div>
+            <div id="nav-header" class="col-lg-11">
+                    <h1 class="text-center">Bicycle Buying Guide</h1>
+               
+                <nav class="navbar navbar-expand-sm bg-dark" >
+                    <ul class="navbar-nav">
+                        <li class="nav-item" id="type">
+                            <a href="#" class="nav-link">Types</a>
+                        </li>
+                        <li class="nav-item" id="features">
+                            <a href="#" class="nav-link" id="features">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="fitcher">Size Calculator</a>
+                        </li>
+                        <li class="nav-item" id="bikes">
+                            <a href="#" class="nav-link">Bikes</a>
+                        </li>
+            
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+ 
+    <main id="main" class="container main">
+        
+        <div class="row">
+            <div class="col-lg-3 asaid-nav">
+                <div><br>
+                    <form action="">
+                        <div class="row no-gutters">
+                            <input type="text" placeholder="Search" class="search col-lg-9" id="search">
+                            <div class="col-lg-3">
+                                <button type="submit" id="searchButton"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div> <br>
+
+
+                    </form>
+                    <form action="#" method="GET">
+                        <p class="nav-heading">Type</p>
+                        <input type="checkbox" value="Road" name="type" id="road"> Road <br>
+                        <input type="checkbox" value="Mountain" name="type" id="mountain"> Mountain <br>
+                        <input type="checkbox" value="Hibrid" name="type" id="hibrid"> Hibrid <br> <br>
+                        <p class="nav-heading">Brand</p>
+                        <input type="checkbox" value="Scott" name="brand" id="scott"> Scott <br>
+                        <input type="checkbox" value="Cube" name="brand" id="cube"> Cube <br>
+                        <input type="checkbox" value="Trek" name="brand" id="trek"> Trek <br>
+                        <input type="checkbox" value="Focus" name="brand" id="focus"> Focus <br><br>
+                        <p class="nav-heading">Tires</p>
+                        <input type="checkbox" value="29" name="wheel" id="29"> 29 <br>
+                        <input type="checkbox" value="27.5" name="wheel" id="27.5"> 27.5 <br>
+                        <input type="checkbox" value="700c" name="wheel" id="700c"> 700c <br>
+                        <input type="checkbox" value="650c" name="wheel" id="650c"> 650c <br> <br>
+                        <div class="col-lg-12">
+                                <input type="submit" id="sortButton">
+                                <input type="reset" id="resetButton">
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-9 row" id="showBikes">
+
+            </div>
+        </div>
+    </main>
+
+    <script type="text/javascript" src="build/app.all.js"></script>
+</body>
+
+</html>
