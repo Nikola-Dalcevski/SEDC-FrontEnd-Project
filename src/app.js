@@ -2,24 +2,24 @@ import $ from "jquery";
 import * as text from './renderText/text';
 import * as Elements from './elements/elements';
 import * as SortHelper from './helpers/sortHelpter'
+
 import * as sortElements from './elements/sortElements';
 import { Http } from './http/http';
 import { Bike } from './models/bikes';
+import { clearBikeContextAndRenderText } from "./helpers/cssHelpers";
 //import { sortByType } from "./helpers/sortHelpter";
 console.log(Elements.navTypeButton);
 
 Elements.navTypeButton.on("click", (e) => {
-   
-    Elements.bikeContext.html("");
-    Elements.asideNav.css("display", "none");
-    Elements.bikeContext.removeClass("col-lg-9");
-    Elements.bikeContext.append(text.typeText);
+   clearBikeContextAndRenderText(text.typeText);
+    
 })
 Elements.navFitcherButton.on("click", (e) => {
-    Elements.asideNav.css("display", "none");
-    Elements.bikeContext.removeClass("col-lg-9");
-    Elements.bikeContext.html("");
-    Elements.bikeContext.append(text.featuresText);
+    clearBikeContextAndRenderText(text.featuresText);
+})
+
+Elements.navSizeButton.on("click", (e) => {
+    clearBikeContextAndRenderText(text.calculatorText);
 })
 
 let allBikes = [];
@@ -92,7 +92,7 @@ Elements.sortButton.on("click", (e) => {
     //keep values of checkbox WHEEL
     for (let item in sortElements) {
         if (sortElements[item].prop("checked") && sortElements[item].prop("name") === "wheel") {
-            sort.push(sortElements[item].val());
+            sort.push(`${sortElements[item].val()}`);
         }
     }
     let sortedByWheel = [];

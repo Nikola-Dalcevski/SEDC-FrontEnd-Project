@@ -110,17 +110,19 @@ var _elements = __webpack_require__(4);
 
 var Elements = _interopRequireWildcard(_elements);
 
-var _sortHelpter = __webpack_require__(8);
+var _sortHelpter = __webpack_require__(5);
 
 var SortHelper = _interopRequireWildcard(_sortHelpter);
 
-var _sortElements = __webpack_require__(5);
+var _sortElements = __webpack_require__(6);
 
 var sortElements = _interopRequireWildcard(_sortElements);
 
-var _http = __webpack_require__(6);
+var _http = __webpack_require__(7);
 
-var _bikes = __webpack_require__(7);
+var _bikes = __webpack_require__(8);
+
+var _cssHelpers = __webpack_require__(9);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -130,17 +132,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 console.log(Elements.navTypeButton);
 
 Elements.navTypeButton.on("click", function (e) {
-
-    Elements.bikeContext.html("");
-    Elements.asideNav.css("display", "none");
-    Elements.bikeContext.removeClass("col-lg-9");
-    Elements.bikeContext.append(text.typeText);
+    (0, _cssHelpers.clearBikeContextAndRenderText)(text.typeText);
 });
 Elements.navFitcherButton.on("click", function (e) {
-    Elements.asideNav.css("display", "none");
-    Elements.bikeContext.removeClass("col-lg-9");
-    Elements.bikeContext.html("");
-    Elements.bikeContext.append(text.featuresText);
+    (0, _cssHelpers.clearBikeContextAndRenderText)(text.featuresText);
+});
+
+Elements.navSizeButton.on("click", function (e) {
+    (0, _cssHelpers.clearBikeContextAndRenderText)(text.calculatorText);
 });
 
 var allBikes = [];
@@ -206,7 +205,7 @@ Elements.sortButton.on("click", function (e) {
     //keep values of checkbox WHEEL
     for (var _item2 in sortElements) {
         if (sortElements[_item2].prop("checked") && sortElements[_item2].prop("name") === "wheel") {
-            sort.push(sortElements[_item2].val());
+            sort.push('' + sortElements[_item2].val());
         }
     }
     var sortedByWheel = [];
@@ -10875,7 +10874,7 @@ var calculatorText = exports.calculatorText = "\n<h2 class=\"text-center\">Clalc
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.asideNav = exports.sortButton = exports.bikeContext = exports.types = exports.fitchers = exports.filterManu = exports.mainContext = exports.navBikesButton = exports.navFitcherButton = exports.navTypeButton = undefined;
+exports.asideNav = exports.sortButton = exports.bikeContext = exports.types = exports.features = exports.filterManu = exports.mainContext = exports.navSizeButton = exports.navBikesButton = exports.navFitcherButton = exports.navTypeButton = undefined;
 
 var _jquery = __webpack_require__(2);
 
@@ -10886,9 +10885,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var navTypeButton = exports.navTypeButton = (0, _jquery2.default)("#type");
 var navFitcherButton = exports.navFitcherButton = (0, _jquery2.default)("#features");
 var navBikesButton = exports.navBikesButton = (0, _jquery2.default)("#bikes");
+var navSizeButton = exports.navSizeButton = (0, _jquery2.default)("#size-calculator");
+
 var mainContext = exports.mainContext = (0, _jquery2.default)("#main");
 var filterManu = exports.filterManu = (0, _jquery2.default)("#filter-bikes");
-var fitchers = exports.fitchers = (0, _jquery2.default)("#FeaturesText");
+var features = exports.features = (0, _jquery2.default)("#FeaturesText");
 var types = exports.types = (0, _jquery2.default)("#typeText");
 var bikeContext = exports.bikeContext = (0, _jquery2.default)("#showBikes");
 var sortButton = exports.sortButton = (0, _jquery2.default)("#sortButton");
@@ -10896,6 +10897,41 @@ var asideNav = exports.asideNav = (0, _jquery2.default)(".asaid-nav");
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.sortByType = sortByType;
+exports.sortByBrand = sortByBrand;
+exports.sortByWheelSize = sortByWheelSize;
+function sortByType(type1, type2, type3, list) {
+    var sortList = list.filter(function (item) {
+        return item.type === type1 || item.type === type2 || item.type === type3;
+    });
+    return sortList;
+}
+
+function sortByBrand(brand1, brand2, brand3, brand4, list) {
+    var sortList = list.filter(function (item) {
+        return item.brand === brand1 || item.brand === brand2 || item.brand === brand3 || item.brand === brand4;
+    });
+    return sortList;
+}
+
+function sortByWheelSize(size1, size2, size3, size4, list) {
+
+    var sortList = list.filter(function (item) {
+        return "" + item.tireSize === size1 || "" + item.tireSize === size2 || "" + item.tireSize === size3 || "" + item.tireSize === size4;
+    });
+    return sortList;
+}
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10927,7 +10963,7 @@ var searchButton = exports.searchButton = (0, _jquery2.default)("#searchButton")
 var search = exports.search = (0, _jquery2.default)("#search");
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10963,7 +10999,7 @@ var Http = exports.Http = function () {
 }();
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11000,7 +11036,7 @@ var Bike = exports.Bike = function () {
 }();
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11009,29 +11045,19 @@ var Bike = exports.Bike = function () {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.sortByType = sortByType;
-exports.sortByBrand = sortByBrand;
-exports.sortByWheelSize = sortByWheelSize;
-function sortByType(type1, type2, type3, list) {
-    var sortList = list.filter(function (item) {
-        return item.type === type1 || item.type === type2 || item.type === type3;
-    });
-    return sortList;
-}
+exports.clearBikeContextAndRenderText = clearBikeContextAndRenderText;
 
-function sortByBrand(brand1, brand2, brand3, brand4, list) {
-    var sortList = list.filter(function (item) {
-        return item.brand === brand1 || item.brand === brand2 || item.brand === brand3 || item.brand === brand4;
-    });
-    return sortList;
-}
+var _elements = __webpack_require__(4);
 
-function sortByWheelSize(size1, size2, size3, size4, list) {
+var Elements = _interopRequireWildcard(_elements);
 
-    var sortList = list.filter(function (item) {
-        return "" + item.tireSize === size1 || "" + item.tireSize === size2 || "" + item.tireSize === size3 || "" + item.tireSize === size4;
-    });
-    return sortList;
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function clearBikeContextAndRenderText(text) {
+    Elements.bikeContext.html("");
+    Elements.asideNav.css("display", "none");
+    Elements.bikeContext.removeClass("col-lg-9");
+    Elements.bikeContext.append(text);
 }
 
 /***/ })
