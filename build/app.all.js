@@ -130,7 +130,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //import { sortByType } from "./helpers/sortHelpter";
 console.log(Elements.navTypeButton);
-
+(0, _cssHelpers.clearBikeContextAndRenderText)(text.typeText);
 Elements.navTypeButton.on("click", function (e) {
     (0, _cssHelpers.clearBikeContextAndRenderText)(text.typeText);
 });
@@ -167,62 +167,40 @@ Elements.navBikesButton.on("click", function (e) {
 
 // SORT BICYCLES
 
+// not work for wheelsize problem in comparatin number whit string
+function sortAllBikes(bikeList, type) {
+    var sortList = [];
+    var sortedBikes = [];
+    for (var item in sortElements) {
+        if (sortElements[item].prop("checked") && sortElements[item].prop("name") === type) {
+            sortList.push(sortElements[item].val());
+        }
+    }
+
+    if (sortList.length !== 0) {
+        sortedBikes = SortHelper.sortTypeBrandWheel(sortList, bikeList, type);
+    } else {
+        sortedBikes = bikeList;
+    }
+
+    return sortedBikes;
+}
 Elements.sortButton.on("click", function (e) {
     e.preventDefault();
-    var sort = [];
-    var sortedByType = [];
-
-    //keep the vlues of checkbox TYPE
-    for (var item in sortElements) {
-        if (sortElements[item].prop("checked") && sortElements[item].prop("name") === "type") {
-            sort.push(sortElements[item].val());
-        }
-    }
-    //check if something is selected TYPE
-    if (sort.length !== 0) {
-        sortedByType = SortHelper.sortByType(sort[0], sort[1], sort[2], allBikes);
-        console.log(sortedByType);
-    } else {
-        sortedByType = allBikes;
-    }
-
-    sort = [];
-    //keep values of checkboc BRAND
-    for (var _item in sortElements) {
-        if (sortElements[_item].prop("checked") && sortElements[_item].prop("name") === "brand") {
-            sort.push(sortElements[_item].val());
-        }
-    }
-    var sortedByBrand = [];
-    //check if something is selected Brand
-    if (sort.length !== 0) {
-        sortedByBrand = SortHelper.sortByBrand(sort[0], sort[1], sort[2], sort[3], sortedByType);
-    } else {
-        sortedByBrand = sortedByType;
-    }
-    console.log(sortedByBrand);
-    sort = [];
-    //keep values of checkbox WHEEL
-    for (var _item2 in sortElements) {
-        if (sortElements[_item2].prop("checked") && sortElements[_item2].prop("name") === "wheel") {
-            sort.push('' + sortElements[_item2].val());
-        }
-    }
-    var sortedByWheel = [];
-    //check if something is selected Wheel
-    if (sort.length !== 0) {
-        sortedByWheel = SortHelper.sortByWheelSize(sort[0], sort[1], sort[2], sort[3], sortedByBrand);
-    } else {
-        sortedByWheel = sortedByBrand;
-    }
-    console.log(sortedByWheel);
+    var Type = {
+        type: "type",
+        brand: "brand",
+        tireSize: "tireSize"
+    };
+    var sortedByType = sortAllBikes(allBikes, Type.type);
+    var sortedByBrand = sortAllBikes(sortedByType, Type.brand);
+    var sortedByWheel = sortAllBikes(sortedByBrand, Type.tireSize);
 
     Elements.bikeContext.html("");
     sortedByWheel.forEach(function (bike) {
         Elements.bikeContext.append(bike.renderBike());
     });
     Elements.filterManu.css("display", "block");
-    console.log(allBikes);
 });
 
 //SEARCH 
@@ -10905,27 +10883,12 @@ var asideNav = exports.asideNav = (0, _jquery2.default)(".asaid-nav");
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.sortByType = sortByType;
-exports.sortByBrand = sortByBrand;
-exports.sortByWheelSize = sortByWheelSize;
-function sortByType(type1, type2, type3, list) {
-    var sortList = list.filter(function (item) {
-        return item.type === type1 || item.type === type2 || item.type === type3;
-    });
-    return sortList;
-}
-
-function sortByBrand(brand1, brand2, brand3, brand4, list) {
-    var sortList = list.filter(function (item) {
-        return item.brand === brand1 || item.brand === brand2 || item.brand === brand3 || item.brand === brand4;
-    });
-    return sortList;
-}
-
-function sortByWheelSize(size1, size2, size3, size4, list) {
+exports.sortTypeBrandWheel = sortTypeBrandWheel;
+function sortTypeBrandWheel(listSort, list, type) {
 
     var sortList = list.filter(function (item) {
-        return "" + item.tireSize === size1 || "" + item.tireSize === size2 || "" + item.tireSize === size3 || "" + item.tireSize === size4;
+        console.log(item[type]);
+        return item[type] === listSort[0] || item[type] === listSort[1] || item[type] === listSort[2] || item.tireSize === listSort[3];
     });
     return sortList;
 }

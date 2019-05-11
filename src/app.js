@@ -9,10 +9,10 @@ import { Bike } from './models/bikes';
 import { clearBikeContextAndRenderText } from "./helpers/cssHelpers";
 //import { sortByType } from "./helpers/sortHelpter";
 console.log(Elements.navTypeButton);
-
+clearBikeContextAndRenderText(text.typeText);
 Elements.navTypeButton.on("click", (e) => {
-   clearBikeContextAndRenderText(text.typeText);
-    
+    clearBikeContextAndRenderText(text.typeText);
+
 })
 Elements.navFitcherButton.on("click", (e) => {
     clearBikeContextAndRenderText(text.featuresText);
@@ -34,14 +34,14 @@ Elements.navBikesButton.on("click", (e) => {
             allBikes = [];
             console.log(data);
             data.forEach(bike => {
-                allBikes.push(new Bike(bike.Brand, bike.Model, bike.Type, bike.Spec.Tires.size,bike.fullname));
+                allBikes.push(new Bike(bike.Brand, bike.Model, bike.Type, bike.Spec.Tires.size, bike.fullname));
             });
 
             Elements.bikeContext.html("");
             allBikes.forEach(bike => {
                 Elements.bikeContext.append(bike.renderBike());
             })
-            Elements.asideNav.css("display","block");
+            Elements.asideNav.css("display", "block");
             Elements.filterManu.css("display", "block");
             console.log(allBikes);
         });
@@ -52,88 +52,62 @@ Elements.navBikesButton.on("click", (e) => {
 
 // SORT BICYCLES
 
+// not work for wheelsize problem in comparatin number whit string
+function sortAllBikes(bikeList, type) {
+    let sortList = [];
+    let sortedBikes = [];
+    for (let item in sortElements) {
+        if (sortElements[item].prop("checked") && sortElements[item].prop("name") === type) {
+            sortList.push(sortElements[item].val());
+        }
+    }
+
+    if (sortList.length !== 0) {
+        sortedBikes = SortHelper.sortTypeBrandWheel(sortList, bikeList, type);
+    } else {
+        sortedBikes = bikeList;
+    }
+
+    return sortedBikes;
+}
 Elements.sortButton.on("click", (e) => {
     e.preventDefault();
-    let sort = [];
-    let sortedByType =[];
+    let Type = {
+        type: "type",
+        brand: "brand",
+        tireSize: "tireSize"
+    };
+    let sortedByType = sortAllBikes(allBikes, Type.type);
+    let sortedByBrand = sortAllBikes(sortedByType, Type.brand);
+    let sortedByWheel = sortAllBikes(sortedByBrand, Type.tireSize);
 
-    //keep the vlues of checkbox TYPE
-    for (let item in sortElements) {
-        if (sortElements[item].prop("checked") && sortElements[item].prop("name") === "type") {
-            sort.push(sortElements[item].val());
-        }
-    }
-    //check if something is selected TYPE
-    if (sort.length !== 0) {
-        sortedByType = SortHelper.sortByType(sort[0], sort[1], sort[2], allBikes);
-        console.log(sortedByType);
-    }else {
-        sortedByType = allBikes;
-    }
-    
-
-    sort = [];
-    //keep values of checkboc BRAND
-    for (let item in sortElements) {
-        if (sortElements[item].prop("checked") && sortElements[item].prop("name") === "brand") {
-            sort.push(sortElements[item].val());
-        }
-    }
-    let sortedByBrand = [];
-     //check if something is selected Brand
-     if (sort.length !== 0) {
-        sortedByBrand = SortHelper.sortByBrand(sort[0], sort[1], sort[2],sort[3], sortedByType);
-       
-    }else {
-        sortedByBrand = sortedByType;
-    }
-    console.log(sortedByBrand);
-  sort =[]
-    //keep values of checkbox WHEEL
-    for (let item in sortElements) {
-        if (sortElements[item].prop("checked") && sortElements[item].prop("name") === "wheel") {
-            sort.push(`${sortElements[item].val()}`);
-        }
-    }
-    let sortedByWheel = [];
-     //check if something is selected Wheel
-    if (sort.length !== 0) {
-        sortedByWheel = SortHelper.sortByWheelSize(sort[0], sort[1], sort[2], sort[3], sortedByBrand);
-        
-    }else {
-        sortedByWheel = sortedByBrand;
-    }
-    console.log(sortedByWheel);
-    
     Elements.bikeContext.html("");
     sortedByWheel.forEach(bike => {
         Elements.bikeContext.append(bike.renderBike());
     })
     Elements.filterManu.css("display", "block")
-    console.log(allBikes);
 })
 
 //SEARCH 
 
 sortElements.searchButton.on("click", (e) => {
 
-    let listFullname =[];
+    let listFullname = [];
     let searchBike = sortElements.search.val();
     Elements.bikeContext.html("");
 
     allBikes.forEach(bike => listFullname.push(bike.fullname));
 
     listFullname.forEach(name => {
-        if(name.includes(searchBike)){
+        if (name.includes(searchBike)) {
             let bike = allBikes.find(bike => bike.fullname === name);
-            if(bike){
+            if (bike) {
                 Elements.bikeContext.append(bike.renderBike());
             }
         }
-       
     })
 
-    if(Elements.bikeContext.html){
+    if (Elements.bikeContext.html) {
         Elements.bikeContext.append("<p>nothing found</p>");
     }
 })
