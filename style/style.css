@@ -73,3 +73,7 @@ background-color: lightgray;
 .bikes-render{
     font-size: 12px;
 }
+
+.form-size{
+    padding-top: 100px;
+}

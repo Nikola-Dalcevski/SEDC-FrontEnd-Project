@@ -2,12 +2,11 @@ import $ from "jquery";
 import * as text from './renderText/text';
 import * as Elements from './elements/elements';
 import * as SortHelper from './helpers/sortHelpter'
-
 import * as sortElements from './elements/sortElements';
 import { Http } from './http/http';
 import { Bike } from './models/bikes';
 import { clearBikeContextAndRenderText } from "./helpers/cssHelpers";
-//import { sortByType } from "./helpers/sortHelpter";
+
 console.log(Elements.navTypeButton);
 clearBikeContextAndRenderText(text.typeText);
 Elements.navTypeButton.on("click", (e) => {

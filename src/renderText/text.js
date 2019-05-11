@@ -164,27 +164,56 @@
 </section> </div>`;
 
 export let calculatorText = `
+<div class="col-lg-12">
 <h2 class="text-center">Clalculate Bicycle Size</h2>
-<ol>
-    <li>
-            Take off your shoes and stand with your legs about 15-20 cm(6” – 8”) apart. Measure the height from the ground to your crotch.
-    </li>
-    <li>
-            Be sure of the type of bicycle you want: Mountain bike, city bike or road bike. You can read about the different bike types
-    </li>
-</ol>
-<form action="" class="container">
-        <select name="typeOfBike" id="typeBike" class="col-sm-12">
-                <option value="Choose Type of bike">Choose type of bike</option>
-                <option value="road">Road Bike</option>
-                <option value="mount">Mount Bike</option>
-                <option value="hibrid">Hibrid Bike</option>
-            </select>
-            <div class="col-sm-12 ">
-            <label for="length">Enter your leg inseam (cm)</label>
-          <input type="number" value="Leg inseam" id="length">
-        </div>
+</div>
+<div class="col-lg-12 row">
+<div class="col-lg-6">
+    <ol>
+        <li>
+            Be sure of the type of bicycle you want: Mountain bike, city bike or road bike. You can
+            read about the different bike types
+        </li>
+        <li>
+            Take off your shoes and stand with your legs about 15-20 cm(6” – 8”) apart. Measure the
+            height from the ground to your crotch. (B)
+        </li>
+        <li>
+            Take off your shoes and stand with your legs about 15-20 cm(6” – 8”) apart. Measure the
+            height form the ground to top of your head. (A)
+        </li>
+        <li>
+            To choose a size you should stand over the frame with both feet flat on the ground. A
+            properly sized bike frame will have 5cm(2") clearance between the top tube of the frame
+            and your crotch. (C)
+        </li>
+    </ol>
+</div>
+
+<img class="col-lg-6" src="Images/shema-bikeman.gif" alt="How to calculate size">
+</div>
+
+<form action="" class="col-lg-12  form-size">
+<select name="typeOfBike" id="typeBike" class="col-sm-12">
+    <option value="Choose Type of bike">Choose type of bike</option>
+    <option value="road">Road Bike</option>
+    <option value="mount">Mount Bike</option>
+    <option value="hibrid">Hibrid Bike</option>
+</select>
+<div class="col-sm-12 ">
+    <label for="length">Enter your leg inseam (cm)</label>
+    <input type="number" value="Leg inseam" id="length">
+</div>
+<div class="col-sm-12 ">
+    <label for="length">Enter your Height (cm)</label>
+    <input type="number" value="height" id="height">
+</div>
+<div class="col-sm-12">
+    <button type="submit">Calculate</button>
+    <button type="reset">Reset</button>
+</div>
 </form>
+</div>
 
 `
 
