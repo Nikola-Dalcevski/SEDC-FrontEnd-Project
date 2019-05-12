@@ -20,11 +20,11 @@ Elements.navFitcherButton.on("click", (e) => {
 Elements.navSizeButton.on("click", (e) => {
     clearBikeContextAndRenderText(text.calculatorText);
 })
-
+let url = "https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db.json";
 let allBikes = [];
 Elements.navBikesButton.on("click", (e) => {
-
-    Http.fetchData("https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db.json")
+    
+    Http.fetchDataBikes("https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db.json")
 
         .then(data => {
             Elements.bikeContext.addClass("col-lg-9");
@@ -43,7 +43,15 @@ Elements.navBikesButton.on("click", (e) => {
             Elements.asideNav.css("display", "block");
             Elements.filterManu.css("display", "block");
             console.log(allBikes);
-        });
+            
+            //bikeInfo must be selected after bike buttons are rendered with class bikeInfo
+            //so can eventlistener be added to the buttons
+            FetchAndEventBikeInfo(url);
+            
+           
+          
+        })
+        .catch(err => console.log(err));
 })
 
 
@@ -85,12 +93,13 @@ Elements.sortButton.on("click", (e) => {
         Elements.bikeContext.append(bike.renderBike());
     })
     Elements.filterManu.css("display", "block")
+    FetchAndEventBikeInfo(url);
 })
 
 //SEARCH 
 
 sortElements.searchButton.on("click", (e) => {
-
+    console.log(e.currentTarget.attributes)
     let listFullname = [];
     let searchBike = sortElements.search.val();
     Elements.bikeContext.html("");
@@ -105,11 +114,22 @@ sortElements.searchButton.on("click", (e) => {
             }
         }
     })
-
+    FetchAndEventBikeInfo(url);
     if (Elements.bikeContext.html) {
         Elements.bikeContext.append("<p>nothing found</p>");
     }
 })
+
+//bikeInfo Function
+function FetchAndEventBikeInfo(url){
+    $(".bikeInfo").on("click",(e) => {
+        let value = e.currentTarget.attributes.value.value;
+        Http.fetchDataInfo(url,value);
+    });
+}
+
+
+
 
 
 

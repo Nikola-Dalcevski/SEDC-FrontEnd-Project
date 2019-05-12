@@ -140,11 +140,11 @@ Elements.navFitcherButton.on("click", function (e) {
 Elements.navSizeButton.on("click", function (e) {
     (0, _cssHelpers.clearBikeContextAndRenderText)(text.calculatorText);
 });
-
+var url = "https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db.json";
 var allBikes = [];
 Elements.navBikesButton.on("click", function (e) {
 
-    _http.Http.fetchData("https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db.json").then(function (data) {
+    _http.Http.fetchDataBikes("https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db.json").then(function (data) {
         Elements.bikeContext.addClass("col-lg-9");
         Elements.bikeContext.css("display", "flex");
         Elements.bikeContext.append("<h1>Loading....</h1>");
@@ -161,6 +161,12 @@ Elements.navBikesButton.on("click", function (e) {
         Elements.asideNav.css("display", "block");
         Elements.filterManu.css("display", "block");
         console.log(allBikes);
+
+        //bikeInfo must be selected after bike buttons are rendered with class bikeInfo
+        //so can eventlistener be added to the buttons
+        FetchAndEventBikeInfo(url);
+    }).catch(function (err) {
+        return console.log(err);
     });
 });
 
@@ -200,12 +206,13 @@ Elements.sortButton.on("click", function (e) {
         Elements.bikeContext.append(bike.renderBike());
     });
     Elements.filterManu.css("display", "block");
+    FetchAndEventBikeInfo(url);
 });
 
 //SEARCH 
 
 sortElements.searchButton.on("click", function (e) {
-
+    console.log(e.currentTarget.attributes);
     var listFullname = [];
     var searchBike = sortElements.search.val();
     Elements.bikeContext.html("");
@@ -224,11 +231,19 @@ sortElements.searchButton.on("click", function (e) {
             }
         }
     });
-
+    FetchAndEventBikeInfo(url);
     if (Elements.bikeContext.html) {
         Elements.bikeContext.append("<p>nothing found</p>");
     }
 });
+
+//bikeInfo Function
+function FetchAndEventBikeInfo(url) {
+    (0, _jquery2.default)(".bikeInfo").on("click", function (e) {
+        var value = e.currentTarget.attributes.value.value;
+        _http.Http.fetchDataInfo(url, value);
+    });
+}
 
 /***/ }),
 /* 2 */
@@ -10851,7 +10866,7 @@ var calculatorText = exports.calculatorText = "\n<div class=\"col-lg-12\">\n<h2 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.asideNav = exports.sortButton = exports.bikeContext = exports.types = exports.features = exports.filterManu = exports.mainContext = exports.navSizeButton = exports.navBikesButton = exports.navFitcherButton = exports.navTypeButton = undefined;
+exports.nik = exports.bikeInfo = exports.asideNav = exports.sortButton = exports.bikeContext = exports.types = exports.features = exports.filterManu = exports.mainContext = exports.navSizeButton = exports.navBikesButton = exports.navFitcherButton = exports.navTypeButton = undefined;
 
 var _jquery = __webpack_require__(2);
 
@@ -10871,6 +10886,8 @@ var types = exports.types = (0, _jquery2.default)("#typeText");
 var bikeContext = exports.bikeContext = (0, _jquery2.default)("#showBikes");
 var sortButton = exports.sortButton = (0, _jquery2.default)("#sortButton");
 var asideNav = exports.asideNav = (0, _jquery2.default)(".asaid-nav");
+var bikeInfo = exports.bikeInfo = (0, _jquery2.default)(".bikeInfo");
+var nik = exports.nik = (0, _jquery2.default)(".nik");
 
 /***/ }),
 /* 5 */
@@ -10945,12 +10962,27 @@ var Http = exports.Http = function () {
     }
 
     _createClass(Http, null, [{
-        key: "fetchData",
-        value: function fetchData(url) {
+        key: "fetchDataBikes",
+        value: function fetchDataBikes(url) {
             return fetch(url).then(function (response) {
                 return response.json();
             }).then(function (data) {
                 return data.Bikes;
+            }).catch(function (err) {
+                return console.log(err);
+            });
+        }
+    }, {
+        key: "fetchDataInfo",
+        value: function fetchDataInfo(url, bikeFullName) {
+            return fetch(url).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                var bicyle = data.Bikes.find(function (x) {
+                    return x.fullname === bikeFullName;
+                });
+                console.log(bicyle);
+                return bicyle;
             }).catch(function (err) {
                 return console.log(err);
             });
@@ -10976,7 +11008,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Bike = exports.Bike = function () {
-    function Bike(brand, model, type, tireSize, fullname, img) {
+    function Bike(brand, model, type, tireSize, fullname) {
         _classCallCheck(this, Bike);
 
         this.brand = brand;
@@ -10990,7 +11022,7 @@ var Bike = exports.Bike = function () {
     _createClass(Bike, [{
         key: "renderBike",
         value: function renderBike() {
-            return "<div class='col-sm-12 col-lg-4 bikes-render' >\n        <button type='button'>\n        <img src=\"Images/download.jpg\" alt=\"\">\n        <p>Brand: " + this.brand + "</p>\n        <p>Model: " + this.model + "</p>\n        <p>Type :" + this.type + "</p>\n        </button>\n        </div>";
+            return "<div  class='col-sm-12 col-lg-4 bikes-render'  >\n        <button type='button' class='bikeInfo'value='" + this.fullname + "'  >\n        <img src=\"Images/download.jpg\" alt=\"\">\n        <p>Brand: " + this.brand + "</p>\n        <p>Model: " + this.model + "</p>\n        <p>Type :" + this.type + "</p>\n        </button>\n        </div>";
         }
     }]);
 

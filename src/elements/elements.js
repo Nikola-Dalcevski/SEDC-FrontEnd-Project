@@ -11,6 +11,8 @@ export const types = $("#typeText");
 export const bikeContext = $("#showBikes");
 export const sortButton = $("#sortButton");
 export const asideNav = $(".asaid-nav");
+export const bikeInfo = $(".bikeInfo");
+export const nik = $(".nik");
 
 
 

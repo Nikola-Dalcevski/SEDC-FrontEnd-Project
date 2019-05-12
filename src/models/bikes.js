@@ -1,5 +1,5 @@
 export class Bike {
-    constructor(brand, model, type, tireSize, fullname, img) {
+    constructor(brand, model, type, tireSize, fullname) {
         this.brand = brand;
         this.model = model
         this.fullname = fullname;
@@ -10,8 +10,8 @@ export class Bike {
 
 
     renderBike() {
-        return `<div class='col-sm-12 col-lg-4 bikes-render' >
-        <button type='button'>
+        return `<div  class='col-sm-12 col-lg-4 bikes-render'  >
+        <button type='button' class='bikeInfo'value='${this.fullname}'  >
         <img src="Images/download.jpg" alt="">
         <p>Brand: ${this.brand}</p>
         <p>Model: ${this.model}</p>
