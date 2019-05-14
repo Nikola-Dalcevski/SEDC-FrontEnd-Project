@@ -15,7 +15,6 @@ export class Bike {
 
     renderBike() {
        let num = Math.ceil((Math.random() * 10 /2));
-       console.log(num);
         return `<div  class='col-sm-12 col-lg-4 bikes-render'  >
         <button type='button' class='bikeInfo'value='${this.fullname}'  >
         <img src="Images/image${num}.jpg" width="200px" height="200px" alt="">

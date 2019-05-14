@@ -3,12 +3,35 @@
     margin: 0px;
     padding: 0px;
 }
+body {
+    background-image: url("../Images/background2.jpg");
+    border-image-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.imgLogo{
+   
+    width: 242px;
+    height: 180px;
+}
  .container-fluid {
     margin: 0px;
     padding: 0px;
 } 
 .main{
     max-width: 900px;
+}
+.navbar {
+    position: absolute;
+    background-color: rgba(22, 22, 22, 1);
+     border: 1px solid white; */
+    max-height: 100px;
+    bottom: 0px;
+    
+}
+#logo {
+    padding: 0;
+    margin: 0;
+    border: 1px solid white;
 }
 .gears {
     max-width: 400px;
@@ -22,7 +45,7 @@
 .column {
     max-width: 450px;
     float: left;
-    padding: 15px;
+   
 }
 .img-clear {
     clear: both;
@@ -40,40 +63,89 @@ p {
 }
 #showBikes{
     /*display: none;
+    
 }*/
-background-color: lightgray;
-}
-.nav-heading{
-    background-color: black;
-    color: white;
-    height: 30px;
-   
+background-color: rgba(211, 211, 211, 1);
+position: relative;
+padding: 5px;
 }
 
 .asaid-nav{
     display: none;
-    background-color: darkcyan;
-    height: fit-content;
-    padding-bottom: 20px;
+    background-color: rgba(0, 139, 139, 1);
+    height:auto;
+    padding: 10px;
+}
+.submitSort{
+   padding: 5px;
 }
 
-/*#logo{
-    /*background-color: blue;
-}*/
+.test{
+    width: 90%;
+}
+
 
 .header{
-    background-color: lightblue;
+    background-color: rgba(173, 216, 230, 0.3); 
+    max-width: 100%;
+    padding: 0px;
+    
+}
+hr{
+    border: 3px solid black;
 }
 
 .bikes-render :hover{
  
  background-color: darkgray;
+
 }
 
 .bikes-render{
     font-size: 12px;
+    padding: 5px;
 }
 
 .form-size{
-    padding-top: 100px;
+    padding-top: 40px;
+}
+
+.showResult{
+    margin-top: 50px;
+    text-align: center;
+}
+.nav-heading{
+    font-weight: bold;
+    font-size: 24px;
+}
+.nav-link {
+    font-size: 24px;
+    text-transform: uppercase;
+   
+}
+.nav-item {
+    padding-right: 20px;
+    padding-left: 20px;
+    border-right: 1px solid white;
+    
+}
+.nav-item :hover {
+    color: white;
+   
+}
+.nav-item::after{
+    content: '';
+    display: block;
+    width: 0px;
+    height: 2px;
+    transition: 0.2s;
+    background:white;
+}
+.nav-item:hover::after{
+    width: 100%;
+}
+
+.nav-link{
+    padding:15px 5px;
+    transition:0.2s;
 }

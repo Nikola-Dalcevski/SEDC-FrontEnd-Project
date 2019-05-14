@@ -20,11 +20,16 @@ Elements.navFitcherButton.on("click", (e) => {
 
 Elements.navSizeButton.on("click", (e) => {
     clearBikeContextAndRenderText(text.calculatorText);
+    const calculatorButton = $("#calculate");
+    calculatorButton.on("click", (e) => {
+        e.preventDefault();
+        console.log("nikola");
+    })
 })
 let url = "https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db.json";
 let allBikes = [];
 Elements.navBikesButton.on("click", (e) => {
-    
+
     Http.fetchDataBikes(url)
 
         .then(data => {
@@ -44,13 +49,13 @@ Elements.navBikesButton.on("click", (e) => {
             Elements.asideNav.css("display", "block");
             Elements.filterManu.css("display", "block");
             console.log(allBikes);
-            
+
             //bikeInfo must be selected after bike buttons are rendered with class bikeInfo
             //so can eventlistener be added to the buttons
             FetchAndEventBikeInfo(url);
-            
-           
-          
+
+
+
         })
         .catch(err => console.log(err));
 })
@@ -90,7 +95,7 @@ Elements.sortButton.on("click", (e) => {
     let sortedByWheel = sortAllBikes(sortedByBrand, Type.tireSize);
 
     Elements.bikeContext.html("");
-    
+
     sortedByWheel.forEach(bike => {
         Elements.bikeContext.append(bike.renderBike());
     })
@@ -101,7 +106,6 @@ Elements.sortButton.on("click", (e) => {
 //SEARCH 
 
 sortElements.searchButton.on("click", (e) => {
-    console.log(e.currentTarget.attributes)
     let listFullname = [];
     let searchBike = sortElements.search.val();
     Elements.bikeContext.html("");
@@ -123,23 +127,24 @@ sortElements.searchButton.on("click", (e) => {
 })
 
 //bikeInfo Function
-function FetchAndEventBikeInfo(url){
-    $(".bikeInfo").on("click",(e) => {
+function FetchAndEventBikeInfo(url) {
+    $(".bikeInfo").on("click", (e) => {
         let value = e.currentTarget.attributes.value.value;
-       
-        Http.fetchDataInfo(url,value)
-        .then(data => {
-            let bike = new bikeInfo(data);
-            console.log(bike);
-            let showbike = bike.renderBikeInfo()
-            clearBikeContextAndRenderText(showbike);
-        })
-     
-       
-       
-        
+
+        Http.fetchDataInfo(url, value)
+            .then(data => {
+                let bike = new bikeInfo(data);
+                let showbike = bike.renderBikeInfo()
+                clearBikeContextAndRenderText(showbike);
+            })
+
     });
 }
+
+
+//Size calculator
+
+
 
 
 

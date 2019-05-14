@@ -16,18 +16,19 @@
 </head>
 
 <body>
-    <header class="container-fluid header">
-        <div class="row no-gutters">
-            <div id="logo" class="col-lg-1">
-                <img src="Images/logo1.png" alt="Logo-BBG" height="130px;">
+    <header class="container header ">
+        <div class="row">
+            <div id="logo" class="col-lg-2">
+                <img  class="imgLogo" src="Images/logo2.png" alt="Logo-BBG" >
             </div>
-            <div id="nav-header" class="col-lg-11">
-                <h1 class="text-center">Bicycle Buying Guide</h1>
+            <div id="nav-header" class="col-lg-10 row nav-header">
+                <h1 class="text-center col-lg-12">Bicycle Buying Guide</h1>
 
-                <nav class="navbar navbar-expand-sm bg-dark">
-                    <ul class="navbar-nav">
+                <nav class="navbar navbar-expand-sm col-lg-12">
+                    <ul class="navbar-nav ">
+                            
                         <li class="nav-item" id="type">
-                            <a href="#" class="nav-link">Types</a>
+                            <a href="#" class="nav-link active">Types</a>
                         </li>
                         <li class="nav-item" id="features">
                             <a href="#" class="nav-link" id="features">Features</a>
@@ -55,7 +56,7 @@
                         <div class="row no-gutters">
                             <input type="text" placeholder="Search" class="search col-lg-9" id="search">
                             <div class="col-lg-3">
-                                
+
                                 <button type="submit" id="searchButton" value="something"><i class="fa fa-search"></i></button>
                             </div>
                         </div> <br>
@@ -67,17 +68,20 @@
                         <input type="checkbox" value="Road" name="type" id="road"> Road <br>
                         <input type="checkbox" value="Mountain" name="type" id="mountain"> Mountain <br>
                         <input type="checkbox" value="Hibrid" name="type" id="hibrid"> Hibrid <br> <br>
+                        <hr>
                         <p class="nav-heading">Brand</p>
                         <input type="checkbox" value="Scott" name="brand" id="scott"> Scott <br>
                         <input type="checkbox" value="Cube" name="brand" id="cube"> Cube <br>
                         <input type="checkbox" value="Trek" name="brand" id="trek"> Trek <br>
                         <input type="checkbox" value="Focus" name="brand" id="focus"> Focus <br><br>
-                        <p class="nav-heading">Tires</p>
+                        <hr>
+                        <p class="nav-heading">Tires size</p>
                         <input type="checkbox" value="29" name="wheel" id="29"> 29 <br>
                         <input type="checkbox" value="27.5" name="wheel" id="27.5"> 27.5 <br>
                         <input type="checkbox" value="700c" name="wheel" id="700c"> 700c <br>
                         <input type="checkbox" value="650c" name="wheel" id="650c"> 650c <br> <br>
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 submitSort">
+                            <hr>
                             <input type="submit" id="sortButton">
                             <input type="reset" id="resetButton">
                         </div>
@@ -85,12 +89,15 @@
                     </form>
                 </div>
             </div>
-        
+            <!--change it back in col lg 9-->
             <div class="col-lg-9 row" id="showBikes">
-              
+
+
+            </div>
+
         </div>
-      
-        
+
+
     </main>
 
     <script type="text/javascript" src="build/app.all.js"></script>
