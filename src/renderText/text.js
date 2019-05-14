@@ -202,11 +202,11 @@ export let calculatorText = `
 </select>
 <div class="col-sm-12 ">
     <label for="length">Enter your leg inseam (cm)</label>
-    <input type="number" value="Leg inseam" id="length">
+    <input type="number" value="Leg inseam" id="length">(B)
 </div>
 <div class="col-sm-12 ">
     <label for="length">Enter your Height (cm)</label>
-    <input type="number" value="height" id="height">
+    <input type="number" value="height" id="height">(A)
 </div>
 <div class="col-sm-12">
     <button type="submit">Calculate</button>

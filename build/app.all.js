@@ -124,6 +124,8 @@ var _bikes = __webpack_require__(8);
 
 var _cssHelpers = __webpack_require__(9);
 
+var _bikeInfo = __webpack_require__(10);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -144,7 +146,7 @@ var url = "https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db
 var allBikes = [];
 Elements.navBikesButton.on("click", function (e) {
 
-    _http.Http.fetchDataBikes("https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db.json").then(function (data) {
+    _http.Http.fetchDataBikes(url).then(function (data) {
         Elements.bikeContext.addClass("col-lg-9");
         Elements.bikeContext.css("display", "flex");
         Elements.bikeContext.append("<h1>Loading....</h1>");
@@ -202,6 +204,7 @@ Elements.sortButton.on("click", function (e) {
     var sortedByWheel = sortAllBikes(sortedByBrand, Type.tireSize);
 
     Elements.bikeContext.html("");
+
     sortedByWheel.forEach(function (bike) {
         Elements.bikeContext.append(bike.renderBike());
     });
@@ -241,7 +244,13 @@ sortElements.searchButton.on("click", function (e) {
 function FetchAndEventBikeInfo(url) {
     (0, _jquery2.default)(".bikeInfo").on("click", function (e) {
         var value = e.currentTarget.attributes.value.value;
-        _http.Http.fetchDataInfo(url, value);
+
+        _http.Http.fetchDataInfo(url, value).then(function (data) {
+            var bike = new _bikeInfo.bikeInfo(data);
+            console.log(bike);
+            var showbike = bike.renderBikeInfo();
+            (0, _cssHelpers.clearBikeContextAndRenderText)(showbike);
+        });
     });
 }
 
@@ -10854,7 +10863,7 @@ var typeText = exports.typeText = "\n  <div class=\"container\" id=\"typeText\">
 
 var featuresText = exports.featuresText = "  <div class=\"container\" id=\"FeaturesText\"> <section class=\"text-center\">\n    <h2>How to choose bycicle fitchers</h2>\n    <article class=\"row\">\n           <h3 class=\"col-sm-12\">Gears</h3>\n        <img class=\"col-sm-12 col-lg-6\" src=\"Images/Road-bike-gears-820x360.jpg\" alt=\"bycicle gears\">\n       \n        <p class=\"col-sm-12 col-lg-6\"><b class=\"heading-start\">Gears</b> If your last bike was a 10-speed, then you may be surprised to learn that today's bikes commonly come with 18, 21, 24 or even 27 gears. When you factor in the many combinations of multiple chainrings and cogs and the numbers of teeth on them, things can get complex.\n\n           To keep it simple, the most important things to consider are your fitness level and the terrain you'll be riding. If you'll be riding lots of hills and you find climbing challenging, then you'll want to opt for more gears.\n           \n           If you're a strong cyclist or you only ride flat terrain, you won't need as many low gears to power up a hill so you can get away with fewer gears, which will keep your bike light. Some hybrid bikes have only one speed, and are aptly named single-speed bikes. These bikes have a freewheel mechanism in the rear hub that allows you to coast just like you would on a standard bike with multiple gears.\n           \n           Learn more about bike gears in our Bike Gears and Shifting Basics article.</p>\n\n    </article>\n    <article class=\"row\">\n           <h3 class=\"col-sm-12\">Wheel Size</h3>\n           <p class=\"col-sm-12 col-lg-6\"><b class=\"heading-start\">Wheel Size:</b> <b>700c:</b> This is the standard size wheel found on almost every road bike and hybrid bike. Don\u2019t worry too much about wheel size on a road bike unless you\u2019re smaller in stature and have had trouble finding the right fit on a bike, in which case you may want to look for a bike with smaller 650c wheels. <br>\n\n               <b>650c:</b>  A handful of road bikes are designed for smaller 650c wheels. If you\u2019re shorter than about 5 ft. 4 in. and have had trouble finding the right fit on a road bike with 700c wheels, you may want to try a bike with 650c wheels. <br>\n               \n              <b>26 in.:</b> In the not-too-distant past, all adult mountain bikes were equipped with 26 in. wheels. It still is an available wheel size, but now when you walk into a bike shop and inquire about mountain bikes, you are likely to be asked, \u201C27.5 in. or 29 in.?\u201D <br>\n               \n              <b>27.5 in.</b> (also known as 650b): Offering a middle ground between standard 26 in. wheels and 29ers, this wheel size applies a \u201Cbest of both worlds\u201D solution, more easily rolling over terrain than the 26s, but more maneuverable than 29ers.</p> <br>\n               <img class=\" gears col-sm-12 col-lg-6 img-clear\" src=\"Images/650B-wheel-size-comparison02.jpg\" \n               alt=\"wheel sizes\">\n               <p class=\"col-sm-12\">\n               <b>29ers:</b>  These bikes feature 29 in. wheels that are a little slower to accelerate, but once you start moving you can conquer considerably more terrain far easier than on a bike with 26 in. wheels. They are more efficient for longer rides as they keep their momentum up and they have a higher \u201Cattack angle,\u201D meaning the wheel rolls over trail obstacles easier. These bikes have become extremely popular for the cross-country crowd. 29ers can be found in rigid, hardtail and full-suspension rigs.\n                \n                                     \n               <b>24 in.:</b>  Many kids\u2019 bikes have 24 in. wheels to accommodate the shorter legs of children. Most are less-expensive versions of adult bikes with simpler components. Generally speaking, these suit kids ages 10 to 13, but this depends more on the size of the child than the age. Younger/smaller children can get started on mountain bikes with 20 in. wheels.\n               \n               <b>20 in.:</b>  This wheels size is found on some BMX and folding bikes and is also common on kids\u2019 bikes.\n               \n              <b>16 in. and 12 in.:</b>  These wheel sizes are found on bikes for young kids. 16 in. wheels are often accompanied by training wheels and 12 in. wheels are common on balance bikes for real young riders.</p>\n              <h3 class=\"col-sm-12\">Bike Suspension</h3>\n               <img class=\"gears col-sm-12 col-lg-6\" src=\"Images/DTP_1802.jpg\" \n               alt=\"wheel sizes\">\n               \n\n               <p class=\"col-sm-12 col-lg-6\">\n                       <b class=\"heading-start\">Bike Suspension:</b> Full Suspension: Found exclusively on mountain bikes, full suspension incorporates a front suspension fork and rear shock to absorb the impacts of the trail. This drastically reduces the impact on the rider, increases traction, and makes for a more forgiving and enjoyable ride.\n\n                       Front Suspension: Bikes with front suspension generally fall into either the mountain bike or hybrid bike categories. The front suspension fork helps absorb impacts on the front wheel to smooth out the ride, whether you\u2019re on a rocky trail or a rough city street. Bikes with only front suspension are typically less expensive than full-suspension bikes and have fewer moving parts (which often translates into less maintenance).\n                       \n                       No Suspension: Most road bikes and many hybrid bikes do not include any suspension at all. Suspension forks and rear shocks add weight and can make pedaling less efficient, so most people who ride on bike paths and paved streets will forego it. A handful of mountain bikes don\u2019t include suspension either and are appropriately called \u201Crigid bikes.\u201D Rigid bikes are easier to maintain and usually less expensive, but most mountain bikers prefer bikes with suspension for greater comfort.\n               </p>\n\n   </article>\n   <article class=\"row\">\n           <h3 class=\"col-sm-12\">Brakes</h3>\n           <img class=\"col-sm-12\" src=\"Images/Content_Team_071018_0031_Disk_Brakes.jpg\" alt=\"bycicle brakes\">\n           <p class=\"col-sm-12 col-lg-6\">\n                   Rim Brakes: Many road bikes come equipped with rim brakes. Rim brakes feature pads that grip onto the wheel rims.\n\n                   Advantages compared to disc brakes: Economical; easy to observe brake pad wear; easy to replace worn pads.\n                   Disadvantages compared to disc brakes: Gradually wear out the wheel rim, requiring the wheel to be replaced; less stopping power; less effective in wet or muddy conditions; require more finger effort on the levers to brake aggressively.\n                   Disc Brakes: These feature brake pads that grip onto a brake rotor mounted to the wheel hub. Disc brakes come in two versions:\n                   \n                   Hydraulic disc brakes offer more progressive and stronger braking with less finger effort, and they self-adjust for brake pad wear.\n                   Mechanical disc brakes need manual adjusting as the pads wear.\n                   When you compare disc brakes to rim brakes there are several clear advantages and disadvantages:\n                   \n                   Advantages compared to rim brakes: More consistent braking in all conditions; much cheaper to replace a worn rotor than a whole wheel; superior performance in steep and wet terrain; less finger strain.\n                   Disadvantages compared to rim brakes: More difficult to inspect pad wear and replace pads. Hydraulic brakes are more expensive to service.\n           </p>\n           <p class=\"col-sm-12 col-lg-6\">\n                   Coaster Brakes: These brakes are often found on kids\u2019 bikes, BMX bikes and some cruiser bikes. The brake mechanism is located in the rear hub and is activated by turning the pedals backwards. \u201CCoaster\u201D indicates that you can coast without the pedals turning.\n\n                   Advantages: Work well in any weather; typically require less maintenance than other brake styles; good for people with limited hand strength, such as kids.\n                   Disadvantages: Not compatible with bikes with rear derailleurs; prone to causing skids; can be awkward to get started pedaling because you can\u2019t rotate the pedals backward into a starting position.\n                   Drum Brakes: Drum brakes are integrated into the wheel hubs and are activated by levers on the handlebar. They\u2019re typically found on cruiser bikes.\n                   \n                   Advantages: Weather resistant; generally require very little maintenance.\n                   Disadvantages: If a drum wears out, the hub and often the wheel need to be replaced; tend to be heavier than other brake styles.\n           </p>\n           <img class=\"col-sm-12 col-lg-6\" src=\"Images/bicyclehandlebartypes.png\"  alt=\"bycicle hendelbars\">\n           <p class=\"col-lg-6 col-sm-12\"> <b class=\"heading-start\">Handlebar Shape</b> \n                 \n                  \n                   There are 5 basic styles of handlebars on bikes available at REI:\n                   \n                   Drop bar: Found on most road bikes, drop-bar handlebars are lightweight and aerodynamic, making them the preferred choice if you want to go fast. They also allow several riding and hand positions. They\u2019re downside is that they put you in a lower, more hunched over position that may put more strain on your back.\n                   \n                   Flat bar: These bars are typically found on hybrid bikes and on some road and mountain bikes. They are heavier than drop-bar handlebars, but they let you sit up in a more relaxed position so you can better see the road and potential hazards. This upright position reduces strain on your hands, wrists and shoulders.\n                   \n                   Riser bar: Commonly found on mountain bikes, riser bars extend slightly upward and back toward the rider. They allow you to sit more upright and farther back for excellent vision of the trail ahead and good control while steering the bike.\n                   \n                   Moustache bar: These bars look similar to drop bars, only with very little drop. They give you a variety of hand positions while allowing you to sit more upright than with drop bars. Moustache bars are found on some road bikes and hybrid bikes.\n                   \n                   BMX bar: These handlebars are designed to be strong and durable to handle the abuse of bike tricks.</p>\n   </article>\n   \n\n</section> </div>";
 
-var calculatorText = exports.calculatorText = "\n<div class=\"col-lg-12\">\n<h2 class=\"text-center\">Clalculate Bicycle Size</h2>\n</div>\n<div class=\"col-lg-12 row\">\n<div class=\"col-lg-6\">\n    <ol>\n        <li>\n            Be sure of the type of bicycle you want: Mountain bike, city bike or road bike. You can\n            read about the different bike types\n        </li>\n        <li>\n            Take off your shoes and stand with your legs about 15-20 cm(6\u201D \u2013 8\u201D) apart. Measure the\n            height from the ground to your crotch. (B)\n        </li>\n        <li>\n            Take off your shoes and stand with your legs about 15-20 cm(6\u201D \u2013 8\u201D) apart. Measure the\n            height form the ground to top of your head. (A)\n        </li>\n        <li>\n            To choose a size you should stand over the frame with both feet flat on the ground. A\n            properly sized bike frame will have 5cm(2\") clearance between the top tube of the frame\n            and your crotch. (C)\n        </li>\n    </ol>\n</div>\n\n<img class=\"col-lg-6\" src=\"Images/shema-bikeman.gif\" alt=\"How to calculate size\">\n</div>\n\n<form action=\"\" class=\"col-lg-12  form-size\">\n<select name=\"typeOfBike\" id=\"typeBike\" class=\"col-sm-12\">\n    <option value=\"Choose Type of bike\">Choose type of bike</option>\n    <option value=\"road\">Road Bike</option>\n    <option value=\"mount\">Mount Bike</option>\n    <option value=\"hibrid\">Hibrid Bike</option>\n</select>\n<div class=\"col-sm-12 \">\n    <label for=\"length\">Enter your leg inseam (cm)</label>\n    <input type=\"number\" value=\"Leg inseam\" id=\"length\">\n</div>\n<div class=\"col-sm-12 \">\n    <label for=\"length\">Enter your Height (cm)</label>\n    <input type=\"number\" value=\"height\" id=\"height\">\n</div>\n<div class=\"col-sm-12\">\n    <button type=\"submit\">Calculate</button>\n    <button type=\"reset\">Reset</button>\n</div>\n</form>\n</div>\n\n";
+var calculatorText = exports.calculatorText = "\n<div class=\"col-lg-12\">\n<h2 class=\"text-center\">Clalculate Bicycle Size</h2>\n</div>\n<div class=\"col-lg-12 row\">\n<div class=\"col-lg-6\">\n    <ol>\n        <li>\n            Be sure of the type of bicycle you want: Mountain bike, city bike or road bike. You can\n            read about the different bike types\n        </li>\n        <li>\n            Take off your shoes and stand with your legs about 15-20 cm(6\u201D \u2013 8\u201D) apart. Measure the\n            height from the ground to your crotch. (B)\n        </li>\n        <li>\n            Take off your shoes and stand with your legs about 15-20 cm(6\u201D \u2013 8\u201D) apart. Measure the\n            height form the ground to top of your head. (A)\n        </li>\n        <li>\n            To choose a size you should stand over the frame with both feet flat on the ground. A\n            properly sized bike frame will have 5cm(2\") clearance between the top tube of the frame\n            and your crotch. (C)\n        </li>\n    </ol>\n</div>\n\n<img class=\"col-lg-6\" src=\"Images/shema-bikeman.gif\" alt=\"How to calculate size\">\n</div>\n\n<form action=\"\" class=\"col-lg-12  form-size\">\n<select name=\"typeOfBike\" id=\"typeBike\" class=\"col-sm-12\">\n    <option value=\"Choose Type of bike\">Choose type of bike</option>\n    <option value=\"road\">Road Bike</option>\n    <option value=\"mount\">Mount Bike</option>\n    <option value=\"hibrid\">Hibrid Bike</option>\n</select>\n<div class=\"col-sm-12 \">\n    <label for=\"length\">Enter your leg inseam (cm)</label>\n    <input type=\"number\" value=\"Leg inseam\" id=\"length\">(B)\n</div>\n<div class=\"col-sm-12 \">\n    <label for=\"length\">Enter your Height (cm)</label>\n    <input type=\"number\" value=\"height\" id=\"height\">(A)\n</div>\n<div class=\"col-sm-12\">\n    <button type=\"submit\">Calculate</button>\n    <button type=\"reset\">Reset</button>\n</div>\n</form>\n</div>\n\n";
 
 /***/ }),
 /* 4 */
@@ -11016,13 +11025,14 @@ var Bike = exports.Bike = function () {
         this.fullname = fullname;
         this.type = type;
         this.tireSize = tireSize;
-        //this.img = img;
     }
 
     _createClass(Bike, [{
         key: "renderBike",
         value: function renderBike() {
-            return "<div  class='col-sm-12 col-lg-4 bikes-render'  >\n        <button type='button' class='bikeInfo'value='" + this.fullname + "'  >\n        <img src=\"Images/download.jpg\" alt=\"\">\n        <p>Brand: " + this.brand + "</p>\n        <p>Model: " + this.model + "</p>\n        <p>Type :" + this.type + "</p>\n        </button>\n        </div>";
+            var num = Math.ceil(Math.random() * 10 / 2);
+            console.log(num);
+            return "<div  class='col-sm-12 col-lg-4 bikes-render'  >\n        <button type='button' class='bikeInfo'value='" + this.fullname + "'  >\n        <img src=\"Images/image" + num + ".jpg\" width=\"200px\" height=\"200px\" alt=\"\">\n        <p>Brand: " + this.brand + "</p>\n        <p>Model: " + this.model + "</p>\n        <p>Type :" + this.type + "</p>\n        </button>\n        </div>";
         }
     }]);
 
@@ -11053,6 +11063,55 @@ function clearBikeContextAndRenderText(text) {
     Elements.bikeContext.removeClass("col-lg-9");
     Elements.bikeContext.append(text);
 }
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var bikeInfo = exports.bikeInfo = function () {
+    function bikeInfo(data) {
+        _classCallCheck(this, bikeInfo);
+
+        this.type = data.Type;
+        this.brand = data.Brand;
+        this.model = data.Model;
+        this.fullName = data.fullname;
+        this.brakes = data.Spec.Brakes;
+        this.cassate = data.Spec.Cassate;
+        this.chain = data.Spec.Chain;
+        this.frame = data.Spec.Frame;
+        this.forntHub = data.Spec.FrontHub;
+        this.handlebar = data.Spec.Handlebar;
+        this.rearDeraillerur = data.Spec.RearDeraillerur;
+        this.rearHub = data.Spec.RearHub;
+        this.seat = data.Spec.Seat;
+        this.tireSize = data.Spec.Tires.size;
+        this.tiresInfo = data.Spec.Tires.info;
+        this.weight = data.Spec.Weight;
+        this.crankset = data.Spec.crankset;
+        this.fork = data.Spec.fork;
+    }
+
+    _createClass(bikeInfo, [{
+        key: "renderBikeInfo",
+        value: function renderBikeInfo() {
+            return "\n    <div class=\"col-lg-6\">\n                  <img src=\"Images/image1.jpg\" alt=\"bike image\" width=\"440px\">\n              </div>\n              <div class=\"col-lg-6\">\n                  <div>\n                      <h1>" + this.brand + "</h1>\n                      <h2>-" + this.model + "</h2>\n                  </div>\n                  <ul>\n                      <li> <span class=\"infoHeader\">Frame</span><p>-" + this.frame + "</p> </li>\n                      <li> <span>Fork</span><p>-" + this.fork + "</p> </li>\n                      <li> <span>Handlebar</span><p>-" + this.handlebar + "</p> </li>\n                      <li> <span>Front hub</span><p>-" + this.FrontHub + "</p> </li>\n                      <li> <span>Rear hub</span><p>-" + this.rearHub + "</p> </li>\n                      <li> <span>Rear deraillerur</span><p>" + this.rearDeraillerur + "</p> </li>\n                      <li> <span>Crankset</span><p>-" + this.crankset + "</p> </li>\n                      <li> <span>Cassate</span><p>" + this.cassate + "</p> </li>\n                      <li> <span>Chain</span><p>-" + this.chain + "</p> </li>\n                      <li> <span>Brakes</span><p>-" + this.brakes + "</p> </li>\n                      <li> <span>Seat</span><p>-" + this.seat + "</p> </li>\n                      <li> <span>Tires</span><p>-" + this.tiresInfo + " size: " + this.tireSize + "</p> </li>  \n                      <li> <span>Weight</span><p>-" + this.weight + "</p> </li>\n                \n                      \n                  </ul>\n              </div>\n    ";
+        }
+    }]);
+
+    return bikeInfo;
+}();
 
 /***/ })
 /******/ ]);

@@ -6,6 +6,7 @@ import * as sortElements from './elements/sortElements';
 import { Http } from './http/http';
 import { Bike } from './models/bikes';
 import { clearBikeContextAndRenderText } from "./helpers/cssHelpers";
+import { bikeInfo } from "./models/bikeInfo";
 
 console.log(Elements.navTypeButton);
 clearBikeContextAndRenderText(text.typeText);
@@ -24,7 +25,7 @@ let url = "https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db
 let allBikes = [];
 Elements.navBikesButton.on("click", (e) => {
     
-    Http.fetchDataBikes("https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db.json")
+    Http.fetchDataBikes(url)
 
         .then(data => {
             Elements.bikeContext.addClass("col-lg-9");
@@ -89,6 +90,7 @@ Elements.sortButton.on("click", (e) => {
     let sortedByWheel = sortAllBikes(sortedByBrand, Type.tireSize);
 
     Elements.bikeContext.html("");
+    
     sortedByWheel.forEach(bike => {
         Elements.bikeContext.append(bike.renderBike());
     })
@@ -124,7 +126,18 @@ sortElements.searchButton.on("click", (e) => {
 function FetchAndEventBikeInfo(url){
     $(".bikeInfo").on("click",(e) => {
         let value = e.currentTarget.attributes.value.value;
-        Http.fetchDataInfo(url,value);
+       
+        Http.fetchDataInfo(url,value)
+        .then(data => {
+            let bike = new bikeInfo(data);
+            console.log(bike);
+            let showbike = bike.renderBikeInfo()
+            clearBikeContextAndRenderText(showbike);
+        })
+     
+       
+       
+        
     });
 }
 
