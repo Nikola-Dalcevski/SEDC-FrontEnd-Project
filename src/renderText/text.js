@@ -165,61 +165,59 @@
 
 export let calculatorText = `
 <div class="col-lg-12">
-                    <h2 class="text-center">Clalculate Bicycle Size</h2>
-                </div>
-                <div class="col-lg-12 row">
-                    <div class="col-lg-6">
-                        <ol>
-                            <li>
-                                Be sure of the type of bicycle you want: Mountain bike, city bike or road bike. You can
-                                read about the different bike types
-                            </li>
-                            <li>
-                                Take off your shoes and stand with your legs about 15-20 cm(6” – 8”) apart. Measure the
-                                height from the ground to your crotch. (B)
-                            </li>
-                            <li>
-                                Take off your shoes and stand with your legs about 15-20 cm(6” – 8”) apart. Measure the
-                                height form the ground to top of your head. (A)
-                            </li>
-                            <li>
-                                To choose a size you should stand over the frame with both feet flat on the ground. A
-                                properly sized bike frame will have 5cm(2") clearance between the top tube of the frame
-                                and your crotch. (C)
-                            </li>
-                        </ol>
-                    </div>
+<h2 class="text-center">Clalculate Bicycle Size</h2>
+</div>
+<div class="col-lg-12 row">
+<div class="col-lg-6">
+    <ol>
+        <li>
+            Be sure of the type of bicycle you want: Mountain bike, city bike or road bike. You can
+            read about the different bike types
+        </li>
+        <li>
+            Take off your shoes and stand with your legs about 15-20 cm(6” – 8”) apart. Measure the
+            height from the ground to your crotch. (B)
+        </li>
+        <li>
+            Take off your shoes and stand with your legs about 15-20 cm(6” – 8”) apart. Measure the
+            height form the ground to top of your head. (A)
+        </li>
+        <li>
+            To choose a size you should stand over the frame with both feet flat on the ground. A
+            properly sized bike frame will have 5cm(2") clearance between the top tube of the frame
+            and your crotch. (C)
+        </li>
+    </ol>
+</div>
 
-                    <img class="col-lg-6" src="Images/shema-bikeman.gif" alt="How to calculate size">
-                </div>
-                <div class="col-lg-12 row">
-                    <form action="#" class="col-lg-6  form-size">
-                        <div>
-                            <select class="test" name="typeOfBike" id="typeBike">
-                                <option value="Choose Type of bike">Choose type of bike</option>
-                                <option value="road">Road Bike</option>
-                                <option value="mount">Mount Bike</option>
-                                <option value="hibrid">Hibrid Bike</option>
-                            </select>
-                            <div>
-                                <label for="length">Enter your leg inseam (cm)</label>
-                                <input class="test" name="length" type="number" value="Leg inseam" id="length">(B)
-                            </div>
-                            <div>
-                                <label for="height">Enter your Height (cm)</label>
-                                <input class="test" name="height" type="number" value="height" id="height">(A)
-                            </div>
-                            <div class="test">
-                                <button type="submit" id="calculate">Calculate</button>
-                                <button type="reset" id="result">Reset</button>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="col-lg-6 ">
-                            <p class="showResult">Nikola</p>
-                    </div>
-                </div>
+<img class="col-lg-6" src="Images/shema-bikeman.gif" alt="How to calculate size">
+</div>
+<div class="col-lg-12 row">
+<form action="#" class="col-lg-6  form-size row">
+    <div class="col-lg-12">
+        <span class="col-lg-6 ">Enter your Height (cm)</span>
+        <select class="col-lg-5 offset-lg-5" name="height" id="selectHeight" required>
+        </select>
+    </div>
+    <div class="col-lg-12">
+        <span class="col-lg-6 ">Enter your leg inseam (cm)<span>
 
+         <select class="col-lg-5 offset-lg-5" name="hight" id="selectInseam" required>
+         </select>
+                
+    </div>
+
+
+
+    <div>
+        <button type="submit" id="calculate">Calculate</button>
+        <button type="reset" id="result">Reset</button>
+    </div>
+</form>
+<div class="col-lg-6" id="renderSize">
+
+</div>
+</div>
 `
 
 

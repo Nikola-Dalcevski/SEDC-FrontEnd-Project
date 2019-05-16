@@ -1,14 +1,16 @@
 import $ from "jquery";
 import * as text from './renderText/text';
 import * as Elements from './elements/elements';
-import * as SortHelper from './helpers/sortHelpter'
+import * as SortHelper from './helpers/sortHelpter';
 import * as sortElements from './elements/sortElements';
 import { Http } from './http/http';
 import { Bike } from './models/bikes';
 import { clearBikeContextAndRenderText } from "./helpers/cssHelpers";
 import { bikeInfo } from "./models/bikeInfo";
+import { SizeCalculator } from './sizeClaculator/size'
 
 console.log(Elements.navTypeButton);
+
 clearBikeContextAndRenderText(text.typeText);
 Elements.navTypeButton.on("click", (e) => {
     clearBikeContextAndRenderText(text.typeText);
@@ -20,11 +22,26 @@ Elements.navFitcherButton.on("click", (e) => {
 
 Elements.navSizeButton.on("click", (e) => {
     clearBikeContextAndRenderText(text.calculatorText);
+   
+    let inseam = $("#selectInseam");
+    let height = $("#selectHeight");
+    let renderBikeSize = $("#renderSize");
+    SizeCalculator.renderSelectOptions(height, 150, 192);
+    SizeCalculator.renderSelectOptions(inseam, 61 , 73 );
+    height.on("change", (e) => {
+        inseam.text("");
+        let range = SizeCalculator.calculateInseamRange(height.val());
+        SizeCalculator.renderSelectOptions(inseam, range.min ,range.max );
+        
+    })
     const calculatorButton = $("#calculate");
     calculatorButton.on("click", (e) => {
         e.preventDefault();
-        console.log("nikola");
-    })
+        let sizes = SizeCalculator.calculateSizeBike(height.val(), inseam.val());
+        renderBikeSize.text("");
+       
+        SizeCalculator.renderSizeBike(sizes,renderBikeSize);
+    });
 })
 let url = "https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db.json";
 let allBikes = [];
