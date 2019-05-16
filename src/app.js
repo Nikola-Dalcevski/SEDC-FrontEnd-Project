@@ -22,25 +22,25 @@ Elements.navFitcherButton.on("click", (e) => {
 
 Elements.navSizeButton.on("click", (e) => {
     clearBikeContextAndRenderText(text.calculatorText);
-   
+
     let inseam = $("#selectInseam");
     let height = $("#selectHeight");
     let renderBikeSize = $("#renderSize");
     SizeCalculator.renderSelectOptions(height, 150, 192);
-    SizeCalculator.renderSelectOptions(inseam, 61 , 73 );
+    SizeCalculator.renderSelectOptions(inseam, 61, 73);
     height.on("change", (e) => {
         inseam.text("");
         let range = SizeCalculator.calculateInseamRange(height.val());
-        SizeCalculator.renderSelectOptions(inseam, range.min ,range.max );
-        
+        SizeCalculator.renderSelectOptions(inseam, range.min, range.max);
+
     })
     const calculatorButton = $("#calculate");
     calculatorButton.on("click", (e) => {
         e.preventDefault();
         let sizes = SizeCalculator.calculateSizeBike(height.val(), inseam.val());
         renderBikeSize.text("");
-       
-        SizeCalculator.renderSizeBike(sizes,renderBikeSize);
+
+        SizeCalculator.renderSizeBike(sizes, renderBikeSize);
     });
 })
 let url = "https://raw.githubusercontent.com/Nikola-Dalcevski/test-api/master/db.json";
@@ -79,18 +79,24 @@ Elements.navBikesButton.on("click", (e) => {
 
 
 
-
 // SORT BICYCLES
 
-// not work for wheelsize problem in comparatin number whit string
+// not work for wheelsize problem in comparatin number whit string NOW WORKS
 function sortAllBikes(bikeList, type) {
     let sortList = [];
     let sortedBikes = [];
+    console.log(sortElements);
     for (let item in sortElements) {
+
+        console.log()
         if (sortElements[item].prop("checked") && sortElements[item].prop("name") === type) {
+
             sortList.push(sortElements[item].val());
         }
     }
+    console.log(sortList);
+
+
 
     if (sortList.length !== 0) {
         sortedBikes = SortHelper.sortTypeBrandWheel(sortList, bikeList, type);
@@ -112,7 +118,7 @@ Elements.sortButton.on("click", (e) => {
     let sortedByWheel = sortAllBikes(sortedByBrand, Type.tireSize);
 
     Elements.bikeContext.html("");
-
+    console.log(sortedByWheel.length);
     sortedByWheel.forEach(bike => {
         Elements.bikeContext.append(bike.renderBike());
     })
@@ -124,20 +130,22 @@ Elements.sortButton.on("click", (e) => {
 
 sortElements.searchButton.on("click", (e) => {
     let listFullname = [];
-    let searchBike = sortElements.search.val();
+    let searchBike = sortElements.search.val().toLowerCase();
     Elements.bikeContext.html("");
 
-    allBikes.forEach(bike => listFullname.push(bike.fullname));
+    allBikes.forEach(bike => listFullname.push(bike.fullname.toLowerCase()));
 
     listFullname.forEach(name => {
         if (name.includes(searchBike)) {
-            let bike = allBikes.find(bike => bike.fullname === name);
+            let bike = allBikes.find(bike => bike.fullname.toLowerCase() === name);
             if (bike) {
                 Elements.bikeContext.append(bike.renderBike());
             }
         }
     })
-    FetchAndEventBikeInfo(url);
+    FetchAndEventBikeInfo(url)
+    console.log("----");
+    console.log
     if (Elements.bikeContext.html) {
         Elements.bikeContext.append("<p>nothing found</p>");
     }
@@ -159,7 +167,6 @@ function FetchAndEventBikeInfo(url) {
 }
 
 
-//Size calculator
 
 
 

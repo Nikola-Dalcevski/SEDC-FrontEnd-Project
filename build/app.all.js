@@ -196,15 +196,20 @@ Elements.navBikesButton.on("click", function (e) {
 
 // SORT BICYCLES
 
-// not work for wheelsize problem in comparatin number whit string
+// not work for wheelsize problem in comparatin number whit string NOW WORKS
 function sortAllBikes(bikeList, type) {
     var sortList = [];
     var sortedBikes = [];
+    console.log(sortElements);
     for (var item in sortElements) {
+
+        console.log();
         if (sortElements[item].prop("checked") && sortElements[item].prop("name") === type) {
+
             sortList.push(sortElements[item].val());
         }
     }
+    console.log(sortList);
 
     if (sortList.length !== 0) {
         sortedBikes = SortHelper.sortTypeBrandWheel(sortList, bikeList, type);
@@ -226,7 +231,7 @@ Elements.sortButton.on("click", function (e) {
     var sortedByWheel = sortAllBikes(sortedByBrand, Type.tireSize);
 
     Elements.bikeContext.html("");
-
+    console.log(sortedByWheel.length);
     sortedByWheel.forEach(function (bike) {
         Elements.bikeContext.append(bike.renderBike());
     });
@@ -238,17 +243,17 @@ Elements.sortButton.on("click", function (e) {
 
 sortElements.searchButton.on("click", function (e) {
     var listFullname = [];
-    var searchBike = sortElements.search.val();
+    var searchBike = sortElements.search.val().toLowerCase();
     Elements.bikeContext.html("");
 
     allBikes.forEach(function (bike) {
-        return listFullname.push(bike.fullname);
+        return listFullname.push(bike.fullname.toLowerCase());
     });
 
     listFullname.forEach(function (name) {
         if (name.includes(searchBike)) {
             var bike = allBikes.find(function (bike) {
-                return bike.fullname === name;
+                return bike.fullname.toLowerCase() === name;
             });
             if (bike) {
                 Elements.bikeContext.append(bike.renderBike());
@@ -256,6 +261,8 @@ sortElements.searchButton.on("click", function (e) {
         }
     });
     FetchAndEventBikeInfo(url);
+    console.log("----");
+    console.log;
     if (Elements.bikeContext.html) {
         Elements.bikeContext.append("<p>nothing found</p>");
     }
@@ -273,8 +280,6 @@ function FetchAndEventBikeInfo(url) {
         });
     });
 }
-
-//Size calculator
 
 /***/ }),
 /* 2 */
@@ -10933,8 +10938,8 @@ exports.sortTypeBrandWheel = sortTypeBrandWheel;
 function sortTypeBrandWheel(listSort, list, type) {
 
     var sortList = list.filter(function (item) {
-        console.log(item[type]);
-        return item[type] === listSort[0] || item[type] === listSort[1] || item[type] === listSort[2] || item.tireSize === listSort[3];
+
+        return item[type].toString() === listSort[0] || item[type] === listSort[1] || item[type] === listSort[2] || item.tireSize === listSort[3];
     });
     return sortList;
 }
@@ -10965,7 +10970,7 @@ var cube = exports.cube = (0, _jquery2.default)("#cube");
 var trek = exports.trek = (0, _jquery2.default)("#trek");
 var focus = exports.focus = (0, _jquery2.default)("#focus");
 var er29 = exports.er29 = (0, _jquery2.default)("#29");
-var er27 = exports.er27 = (0, _jquery2.default)("#27.5");
+var er27 = exports.er27 = (0, _jquery2.default)("#27-5");
 var C700 = exports.C700 = (0, _jquery2.default)("#700c");
 var C650 = exports.C650 = (0, _jquery2.default)("#650c");
 var searchButton = exports.searchButton = (0, _jquery2.default)("#searchButton");
