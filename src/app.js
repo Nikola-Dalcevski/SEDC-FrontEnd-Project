@@ -8,20 +8,26 @@ import { Bike } from './models/bikes';
 import { clearBikeContextAndRenderText } from "./helpers/cssHelpers";
 import { bikeInfo } from "./models/bikeInfo";
 import { SizeCalculator } from './sizeClaculator/size'
+import { RenderText } from "./renderText/RenderText";
 
 console.log(Elements.navTypeButton);
 
-clearBikeContextAndRenderText(text.typeText);
+//text class;
+
+let text1 = new RenderText();
+
+
+clearBikeContextAndRenderText(text1.typesOfBikes);
 Elements.navTypeButton.on("click", (e) => {
-    clearBikeContextAndRenderText(text.typeText);
+    clearBikeContextAndRenderText(text1.typesOfBikes);
 
 })
 Elements.navFitcherButton.on("click", (e) => {
-    clearBikeContextAndRenderText(text.featuresText);
+    clearBikeContextAndRenderText(text1.featuresOfBike);
 })
 
 Elements.navSizeButton.on("click", (e) => {
-    clearBikeContextAndRenderText(text.calculatorText);
+    clearBikeContextAndRenderText(text1.sizeCalculator);
 
     let inseam = $("#selectInseam");
     let height = $("#selectHeight");
@@ -161,6 +167,9 @@ function FetchAndEventBikeInfo(url) {
                 let bike = new bikeInfo(data);
                 let showbike = bike.renderBikeInfo()
                 clearBikeContextAndRenderText(showbike);
+                $(".tumb").on("click",(e) => {
+                   $("#main-img-bike").attr("src",`${e.currentTarget.attributes[1].value}`);
+                })
             })
 
     });

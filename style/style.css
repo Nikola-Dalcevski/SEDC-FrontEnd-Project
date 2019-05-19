@@ -23,7 +23,7 @@ body {
 .navbar {
     position: absolute;
     background-color: rgba(22, 22, 22, 1);
-     border: 1px solid white; */
+     border: 1px solid white; 
     max-height: 100px;
     bottom: 0px;
     
@@ -104,7 +104,7 @@ hr{
 }
 
 .form-size{
-    padding-top: 40px;
+    padding-top: 30px;
 }
 
 .showResult{
@@ -145,5 +145,18 @@ hr{
 .nav-link{
     padding:15px 5px;
     transition:0.2s;
+}
+.tumb{
+  width: 108px;
+  height: 108px;
+  border: 1px solid gray;
+  
+}
+.tumbs {
+    padding-top: 20px;
+}
+.tumbs :hover{
+opacity: 0.5; 
+cursor: pointer;
 }
 

@@ -164,6 +164,7 @@
 </section> </div>`;
 
 export let calculatorText = `
+<div class="container">
 <div class="col-lg-12">
 <h2 class="text-center">Clalculate Bicycle Size</h2>
 </div>
@@ -217,6 +218,8 @@ export let calculatorText = `
 <div class="col-lg-6" id="renderSize">
 
 </div>
+</div>
+
 </div>
 `
 
