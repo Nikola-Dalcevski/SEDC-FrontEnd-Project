@@ -118,21 +118,39 @@ var _sortElements = __webpack_require__(6);
 
 var sortElements = _interopRequireWildcard(_sortElements);
 
-var _http = __webpack_require__(7);
+var _logInElements = __webpack_require__(7);
 
-var _bikes = __webpack_require__(8);
+var logInElements = _interopRequireWildcard(_logInElements);
 
-var _cssHelpers = __webpack_require__(9);
+var _http = __webpack_require__(8);
 
-var _bikeInfo = __webpack_require__(10);
+var _bikes = __webpack_require__(9);
 
-var _size = __webpack_require__(11);
+var _cssHelpers = __webpack_require__(10);
 
-var _RenderText = __webpack_require__(12);
+var _bikeInfo = __webpack_require__(11);
+
+var _size = __webpack_require__(12);
+
+var _RenderText = __webpack_require__(13);
+
+var _user = __webpack_require__(14);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var firebaseConfig = {
+    apiKey: "AIzaSyDHS_EjNWEykvMI8ZHruhQbZ161P3GonT4",
+    authDomain: "frontend-project-with-firebase.firebaseapp.com",
+    databaseURL: "https://frontend-project-with-firebase.firebaseio.com",
+    projectId: "frontend-project-with-firebase",
+    storageBucket: "frontend-project-with-firebase.appspot.com",
+    messagingSenderId: "697608523280",
+    appId: "1:697608523280:web:7a695e8837c36233"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 console.log(Elements.navTypeButton);
 
@@ -140,7 +158,7 @@ console.log(Elements.navTypeButton);
 
 var text1 = new _RenderText.RenderText();
 
-(0, _cssHelpers.clearBikeContextAndRenderText)(text1.typesOfBikes);
+//clearBikeContextAndRenderText(text1.typesOfBikes);
 Elements.navTypeButton.on("click", function (e) {
     (0, _cssHelpers.clearBikeContextAndRenderText)(text1.typesOfBikes);
 });
@@ -288,6 +306,63 @@ function FetchAndEventBikeInfo(url) {
             });
         });
     });
+}
+
+// log In form
+// console.log("nikola");
+// console.log(logInElements.regForm);
+// logInElements.regForm.on("submit",(e) => {
+//     console.log("nikola");
+//        e.preventDefault();
+//        e.delegateTarget.preventDefault();
+//        e.target.preventDefault();
+//        console.log(e);
+//         const name = logInElements.name.val();
+//         const lastName = logInElements.lastName.val();
+//         const email = logInElements.regEmail.val();
+//         const pass1 = logInElements.pass1.val();
+//         const pass2 = logInElements.pass2.val();
+//         saveUser(name,lastName,email,pass1,pass2);
+//         console.log("works");
+
+
+// })
+
+
+// make reference to the firebase
+var firebaseRef = firebase.database().ref('users');
+
+//fetch users from firebise
+fetch("https://frontend-project-with-firebase.firebaseio.com/users.json").then(function (data) {
+    return data.json();
+}).then(function (data) {
+    return console.log(data);
+}).catch(function (err) {
+    return console.log(err);
+});
+
+logInElements.register.on("click", function (e) {
+    console.log(e);
+    (0, _cssHelpers.clearBikeContextAndRenderText)(text1.registerForm);
+    (0, _jquery2.default)("#regButton").on("click", function (e) {
+        console.log("nikola");
+        e.preventDefault();
+
+        var name = logInElements.regFirstName.val();
+        var lastName = logInElements.regLastName.val();
+        var email = logInElements.regEmail.val();
+        var pass1 = logInElements.regPassword.val();
+        var pass2 = logInElements.regConfirm.val();
+        saveUser(name, lastName, email, pass1, pass2);
+        console.log("works");
+    });
+});
+
+// save user to database
+function saveUser(name, lastName, email, pass, pass2) {
+    var user = new _user.User(name, lastName, email);
+    var newfareBase = firebaseRef.push();
+    newfareBase.set(user);
 }
 
 /***/ }),
@@ -10993,6 +11068,38 @@ var search = exports.search = (0, _jquery2.default)("#search");
 
 
 Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.regButton = exports.regForm = exports.regConfirm = exports.regPassword = exports.regEmail = exports.regLastName = exports.regFirstName = exports.register = exports.logInPassword = exports.logInEmail = exports.logInBtn = exports.logInForm = undefined;
+
+var _jquery = __webpack_require__(2);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var logInForm = exports.logInForm = (0, _jquery2.default)("#logInForm");
+var logInBtn = exports.logInBtn = (0, _jquery2.default)("#logBtn");
+var logInEmail = exports.logInEmail = (0, _jquery2.default)("#email");
+var logInPassword = exports.logInPassword = (0, _jquery2.default)("#pass");
+var register = exports.register = (0, _jquery2.default)("#reg");
+
+var regFirstName = exports.regFirstName = (0, _jquery2.default)("#name");
+var regLastName = exports.regLastName = (0, _jquery2.default)("#lastName");
+var regEmail = exports.regEmail = (0, _jquery2.default)("#regEmail");
+var regPassword = exports.regPassword = (0, _jquery2.default)("#refPassword");
+var regConfirm = exports.regConfirm = (0, _jquery2.default)("#confirm");
+var regForm = exports.regForm = (0, _jquery2.default)("#registerForm");
+var regButton = exports.regButton = (0, _jquery2.default)("#regButton");
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
@@ -11037,7 +11144,7 @@ var Http = exports.Http = function () {
 }();
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11074,7 +11181,7 @@ var Bike = exports.Bike = function () {
 }();
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11099,7 +11206,7 @@ function clearBikeContextAndRenderText(text) {
 }
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11148,7 +11255,7 @@ var bikeInfo = exports.bikeInfo = function () {
 }();
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11302,7 +11409,7 @@ var SizeCalculator = exports.SizeCalculator = function () {
 }();
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11323,6 +11430,7 @@ var RenderText = exports.RenderText = function () {
         this.typesOfBikes = this.startPage() + this.roadBikes() + this.mountBikes() + this.hibridBikes();
         this.featuresOfBike = this.gears() + this.wheelSize() + this.bikeSuspension() + this.breaks() + this.handlebar();
         this.sizeCalculator = this.sizeCalculatorInfo() + this.sizeClalculatorForm();
+        this.registerForm = this.form();
     }
 
     /* #region typesOfBike-Parts */
@@ -11390,12 +11498,53 @@ var RenderText = exports.RenderText = function () {
     }, {
         key: "sizeClalculatorForm",
         value: function sizeClalculatorForm() {
-            return "<div class=\"col-lg-12 row\">\n           <form action=\"#\" class=\"col-lg-6  form-size row\">\n               <div class=\"col-lg-12\">\n                   <span class=\"col-lg-6 \">Enter your Height (cm)</span>\n                   <select class=\"col-lg-5 offset-lg-5\" name=\"height\" id=\"selectHeight\" required>\n                   </select>\n               </div>\n               <div class=\"col-lg-12\">\n                   <span class=\"col-lg-6 \">Enter your leg inseam (cm)<span>\n           \n                    <select class=\"col-lg-5 offset-lg-5\" name=\"hight\" id=\"selectInseam\" required>\n                    </select>\n                           \n               </div>\n           \n           \n           \n               <div>\n                   <button type=\"submit\" id=\"calculate\">Calculate</button>\n                   <button type=\"reset\" id=\"result\">Reset</button>\n               </div>\n           </form>\n           <div class=\"col-lg-6\" id=\"renderSize\">\n           \n           </div>\n           </div>\n           \n           </div>";
+            return "<div class=\"col-lg-12 row\">\n           <form action=\"#\" class=\"col-lg-6  form-size row\">\n               <div class=\"col-lg-12\">\n                   <span class=\"col-lg-6 \">Enter your Height (cm)</span>\n                   <select class=\"col-lg-5 offset-lg-5\" name=\"height\" id=\"selectHeight\" required>\n                   </select>\n               </div>\n               <div class=\"col-lg-12\">\n                   <span class=\"col-lg-6 \">Enter your leg inseam (cm)<span>\n           \n                    <select class=\"col-lg-5 offset-lg-5\" name=\"hight\" id=\"selectInseam\" required>\n                    </select>\n                           \n               </div>\n           \n           \n           \n               <div>\n                   <button type=\"submit\" class=\"btn-primary\" id=\"calculate\">Calculate</button>\n                   <button type=\"reset\" id=\"result\" class=\"btn-info\">Reset</button>\n               </div>\n           </form>\n           <div class=\"col-lg-6\" id=\"renderSize\">\n           \n           </div>\n           </div>\n           \n           </div>";
             //#endregion
+        }
+    }, {
+        key: "form",
+        value: function form() {
+            return "\n        <div class=\"container\">\n        <div class=\"row main\">\n            <div class=\"panel-heading\">\n                <div class=\"panel-title text-center\">\n                    <h1 class=\"title\">Create Account</h1>\n                    <hr />\n                </div>\n            </div>\n            <div class=\"main-login main-center\">\n                <form id=\"registerForm \"class=\"form-horizontal\"  action=\"\">\n\n                    <div class=\"form-group\">\n                        <label for=\"name\" class=\"cols-sm-2 control-label\">First Name:</label>\n                        <div class=\"cols-sm-10\">\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon iconbk\"><i class=\"fa fa-user-plus fa\"\n                                        aria-hidden=\"true\"></i></span>\n                                <input type=\"text\" class=\"form-control formcontrolcls\" name=\"name\" id=\"name\"\n                                    placeholder=\"Enter your first name here\"  required />\n                            </div>\n                        </div>\n                    </div>\n\n                    <div class=\"form-group\">\n                    <label for=\"lastName\" class=\"cols-sm-2 control-label\">Last Name:</label>\n                    <div class=\"cols-sm-10\">\n                        <div class=\"input-group\">\n                            <span class=\"input-group-addon iconbk\"><i class=\"fa fa-user-plus fa\"\n                                    aria-hidden=\"true\"></i></span>\n                            <input type=\"text\" class=\"form-control formcontrolcls\" name=\"lastName\" id=\"lastName\"\n                                placeholder=\"Enter your last name here\" />\n                        </div>\n                    </div>\n                </div>\n\n                    <div class=\"form-group\">\n                        <label for=\"email\" class=\"cols-sm-2 control-label\">Email:</label>\n                        <div class=\"cols-sm-10\">\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon iconbk\"><i class=\"fa fa-envelope-o fa\"\n                                        aria-hidden=\"true\"></i></span>\n                                <input type=\"text\" class=\"form-control formcontrolcls\" name=\"email\" id=\"regEmail\"\n                                    placeholder=\"Enter your Email here\" />\n                            </div>\n                        </div>\n                    </div>\n\n                   \n\n                    <div class=\"form-group\">\n                        <label for=\"password\" class=\"cols-sm-2 control-label\">Password:</label>\n                        <div class=\"cols-sm-10\">\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon iconbk\"><i class=\"fa fa-lock fa-lock \"\n                                        aria-hidden=\"true\"></i></span>\n                                <input type=\"password\" class=\"form-control formcontrolcls\" name=\"regPassword\"\n                                    id=\"password\" placeholder=\"Password: Must be 8 char long\" />\n                            </div>\n                        </div>\n                    </div>\n\n                    <div class=\"form-group\">\n                        <label for=\"confirm\" class=\"cols-sm-2 control-label\">Re-enter Password:</label>\n                        <div class=\"cols-sm-10\">\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon iconbk\"><i class=\"fa fa-lock fa-lock\"\n                                        aria-hidden=\"true\"></i></span>\n                                <input type=\"password\" class=\"form-control formcontrolcls\" name=\"confirm\"\n                                    id=\"confirm\" placeholder=\"Confirm Password\" />\n                            </div>\n                        </div>\n                    </div>\n\n                    <div class=\"form-group \">\n                        <button id=\"regButton\" type=\"submit\" class=\"btn btn-info btn-lg btn-block login-button\">Create\n                            Account</button>\n                    </div>\n\n                </form>\n            </div>\n        </div>\n    </div>\n\n        ";
         }
     }]);
 
     return RenderText;
+}();
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var User = exports.User = function () {
+    function User(firstName, lastName, email) {
+        _classCallCheck(this, User);
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this._password;
+    }
+
+    _createClass(User, [{
+        key: "password",
+        get: function get() {
+            return this._password;
+        },
+        set: function set(value1) {}
+    }]);
+
+    return User;
 }();
 
 /***/ })

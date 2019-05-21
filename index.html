@@ -16,35 +16,45 @@
 </head>
 
 <body>
-    <header class="container header ">
-        <div class="row">
-            <div id="logo" class="col-lg-2">
-                <img class="imgLogo" src="Images/logo2.png" alt="Logo-BBG">
+
+    <nav class="navbar navbar-expand-lg  nav-my-css">
+        <a class="navbar-brand" href="#">BBG</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li id="type" class="nav-item active">
+                    <a class="nav-link" href="#">Type of Bikes <span class="sr-only">(current)</span></a>
+                </li>
+                <li id="features" class="nav-item">
+                    <a class="nav-link" href="#">Bike Features</a>
+                </li>
+                <li id="size-calculator" class="nav-item dropdown">
+                    <a class="nav-link" href="#"> Size Calculator</a>
+                </li>
+                <li id="bikes" class="nav-item">
+                    <a class="nav-link" href="#">Explore Bikes</a>
+                </li>
+            </ul>
+            <div class="logInText">
+
+                <form id="logInForm" class="form-inline my-2 my-lg-0 ">
+                    <input id="email" type="email" class="form-control-sm  mr-sm-2 " placeholder="Email">
+                    <input id="pass" type="password" class="form-control-sm  mr-sm-2" placeholder="Password"> <br>
+                    <button id="logBtn" type="submit" class="btn-primary " id="but">Log in</button>
+                </form>
+                <a id="reg" class="register " href="#">register</a>
             </div>
-            <div id="nav-header" class="col-lg-10 row nav-header">
-                <h1 class="text-center col-lg-12">Bicycle Buying Guide</h1>
 
-                <nav class="navbar navbar-expand-sm col-lg-12">
-                    <ul class="navbar-nav ">
 
-                        <li class="nav-item" id="type">
-                            <a href="#" class="nav-link active">Types of bikes</a>
-                        </li>
-                        <li class="nav-item" id="features">
-                            <a href="#" class="nav-link" id="features">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" id="size-calculator">Size Calculator</a>
-                        </li>
-                        <li class="nav-item" id="bikes">
-                            <a href="#" class="nav-link">Bikes</a>
-                        </li>
 
-                    </ul>
-                </nav>
-            </div>
+
         </div>
-    </header>
+    </nav>
+  
 
 
     <main id="main" class="container main">
@@ -93,13 +103,96 @@
 
             <!--change it back in col lg 9-->
 
-            <div class="col-lg-9 row" id="showBikes">
-              
-
-        </div>
+            <div class="col-lg-9 row " id="showBikes">
+                <div class="container">
+                    <div class="row main">
+                        <div class="panel-heading">
+                            <div class="panel-title text-center">
+                                <h1 class="title">Create Account</h1>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="main-login main-center">
+                            <form id="registerForm " class="form-horizontal"  action="">
+            
+                                <div class="form-group">
+                                    <label for="name" class="cols-sm-2 control-label">First Name:</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon iconbk"><i class="fa fa-user-plus fa"
+                                                    aria-hidden="true"></i></span>
+                                            <input type="text" class="form-control formcontrolcls" name="name" id="name"
+                                                placeholder="Enter your first name here"  required />
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group">
+                                <label for="lastName" class="cols-sm-2 control-label">Last Name:</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon iconbk"><i class="fa fa-user-plus fa"
+                                                aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control formcontrolcls" name="lastName" id="lastName"
+                                            placeholder="Enter your last name here" />
+                                    </div>
+                                </div>
+                            </div>
+            
+                                <div class="form-group">
+                                    <label for="email" class="cols-sm-2 control-label">Email:</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon iconbk"><i class="fa fa-envelope-o fa"
+                                                    aria-hidden="true"></i></span>
+                                            <input type="text" class="form-control formcontrolcls" name="email" id="regEmail"
+                                                placeholder="Enter your Email here" />
+                                        </div>
+                                    </div>
+                                </div>
+            
+                               
+            
+                                <div class="form-group">
+                                    <label for="password" class="cols-sm-2 control-label">Password:</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lock "
+                                                    aria-hidden="true"></i></span>
+                                            <input type="password" class="form-control formcontrolcls" name="regPassword"
+                                                id="password" placeholder="Password: Must be 8 char long" />
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group">
+                                    <label for="confirm" class="cols-sm-2 control-label">Re-enter Password:</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lock"
+                                                    aria-hidden="true"></i></span>
+                                            <input type="password" class="form-control formcontrolcls" name="confirm"
+                                                id="confirm" placeholder="Confirm Password" />
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group ">
+                                    <button id="regButton" type="submit" class="btn btn-info btn-lg btn-block login-button">Create
+                                        Account</button>
+                                </div>
+            
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
     </main>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
 
     <script type="text/javascript" src="build/app.all.js"></script>
 </body>

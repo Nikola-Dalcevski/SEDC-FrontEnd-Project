@@ -4,6 +4,7 @@ export class RenderText {
         this.typesOfBikes = this.startPage() + this.roadBikes() + this.mountBikes() + this.hibridBikes();
         this.featuresOfBike =  this.gears() + this.wheelSize() + this.bikeSuspension() + this.breaks() + this.handlebar();
         this.sizeCalculator = this.sizeCalculatorInfo() + this.sizeClalculatorForm();
+        this.registerForm = this.form();
     }
 
     /* #region typesOfBike-Parts */
@@ -373,8 +374,8 @@ export class RenderText {
            
            
                <div>
-                   <button type="submit" id="calculate">Calculate</button>
-                   <button type="reset" id="result">Reset</button>
+                   <button type="submit" class="btn-primary" id="calculate">Calculate</button>
+                   <button type="reset" id="result" class="btn-info">Reset</button>
                </div>
            </form>
            <div class="col-lg-6" id="renderSize">
@@ -384,5 +385,96 @@ export class RenderText {
            
            </div>`
                //#endregion
-  }
+      
+            }
+
+    form(){
+        return `
+        <div class="container">
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 class="title">Create Account</h1>
+                    <hr />
+                </div>
+            </div>
+            <div class="main-login main-center">
+                <form id="registerForm "class="form-horizontal"  action="">
+
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">First Name:</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon iconbk"><i class="fa fa-user-plus fa"
+                                        aria-hidden="true"></i></span>
+                                <input type="text" class="form-control formcontrolcls" name="name" id="name"
+                                    placeholder="Enter your first name here"  required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="lastName" class="cols-sm-2 control-label">Last Name:</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon iconbk"><i class="fa fa-user-plus fa"
+                                    aria-hidden="true"></i></span>
+                            <input type="text" class="form-control formcontrolcls" name="lastName" id="lastName"
+                                placeholder="Enter your last name here" />
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Email:</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon iconbk"><i class="fa fa-envelope-o fa"
+                                        aria-hidden="true"></i></span>
+                                <input type="text" class="form-control formcontrolcls" name="email" id="regEmail"
+                                    placeholder="Enter your Email here" />
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Password:</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lock "
+                                        aria-hidden="true"></i></span>
+                                <input type="password" class="form-control formcontrolcls" name="regPassword"
+                                    id="password" placeholder="Password: Must be 8 char long" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm" class="cols-sm-2 control-label">Re-enter Password:</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lock"
+                                        aria-hidden="true"></i></span>
+                                <input type="password" class="form-control formcontrolcls" name="confirm"
+                                    id="confirm" placeholder="Confirm Password" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <button id="regButton" type="submit" class="btn btn-info btn-lg btn-block login-button">Create
+                            Account</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+        `
+    }
+
+
 }

@@ -8,6 +8,10 @@ body {
     border-image-repeat: no-repeat;
     background-attachment: fixed;
 }
+.nav-my-css{
+    background-color: black;
+}
+
 .imgLogo{
    
     width: 242px;
@@ -18,16 +22,16 @@ body {
     padding: 0px;
 } 
 .main{
-    max-width: 900px;
+    max-width: 70%;
 }
-.navbar {
+/* .navbar {
     position: absolute;
     background-color: rgba(22, 22, 22, 1);
      border: 1px solid white; 
     max-height: 100px;
     bottom: 0px;
     
-}
+} */
 #logo {
     padding: 0;
     margin: 0;
@@ -65,7 +69,7 @@ p {
     /*display: none;
     
 }*/
-background-color: rgba(211, 211, 211, 1);
+background-color: white;
 position: relative;
 padding: 5px;
 }
@@ -116,11 +120,11 @@ hr{
     font-size: 24px;
 }
 .nav-link {
-    font-size: 24px;
+    font-size: 20px;
     text-transform: uppercase;
    
-}
-.nav-item {
+} 
+ .nav-item {
     padding-right: 20px;
     padding-left: 20px;
     border-right: 1px solid white;
@@ -160,3 +164,64 @@ opacity: 0.5;
 cursor: pointer;
 }
 
+
+/* register form*/
+
+.form-group{
+	margin-bottom: 15px;
+}
+/* .main{
+    margin-top: 70px;
+} */
+
+
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+
+.main-login{
+ 	background-color: #1C728A;
+    /* shadows and rounded borders */
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+label{
+	margin-bottom: 15px;
+    font-size:18px;
+    color: #fff;
+}
+.main-center{
+ 	margin-top: 30px;
+ 	margin: 0 auto;
+ 	max-width: 330px;
+    padding: 40px 40px;
+
+}
+
+.login-button{
+	margin-top: 5px;
+}
+
+.iconbk{
+    background-color:#5BC0DE;
+}
+.formcontrolcls { 
+    padding: 9px; 
+    border: solid 1px #4B718B; 
+    outline: 0; 
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #9DDAEC), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #9DDAEC 1px, #FFFFFF 25px); 
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+
+    } 

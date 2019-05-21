@@ -3,12 +3,26 @@ import * as text from './renderText/text';
 import * as Elements from './elements/elements';
 import * as SortHelper from './helpers/sortHelpter';
 import * as sortElements from './elements/sortElements';
+import * as logInElements from './elements/logInElements';
 import { Http } from './http/http';
 import { Bike } from './models/bikes';
 import { clearBikeContextAndRenderText } from "./helpers/cssHelpers";
 import { bikeInfo } from "./models/bikeInfo";
 import { SizeCalculator } from './sizeClaculator/size'
 import { RenderText } from "./renderText/RenderText";
+import { User } from "./models/user";
+
+var firebaseConfig = {
+    apiKey: "AIzaSyDHS_EjNWEykvMI8ZHruhQbZ161P3GonT4",
+    authDomain: "frontend-project-with-firebase.firebaseapp.com",
+    databaseURL: "https://frontend-project-with-firebase.firebaseio.com",
+    projectId: "frontend-project-with-firebase",
+    storageBucket: "frontend-project-with-firebase.appspot.com",
+    messagingSenderId: "697608523280",
+    appId: "1:697608523280:web:7a695e8837c36233"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 
 console.log(Elements.navTypeButton);
 
@@ -17,7 +31,7 @@ console.log(Elements.navTypeButton);
 let text1 = new RenderText();
 
 
-clearBikeContextAndRenderText(text1.typesOfBikes);
+//clearBikeContextAndRenderText(text1.typesOfBikes);
 Elements.navTypeButton.on("click", (e) => {
     clearBikeContextAndRenderText(text1.typesOfBikes);
 
@@ -25,6 +39,8 @@ Elements.navTypeButton.on("click", (e) => {
 Elements.navFitcherButton.on("click", (e) => {
     clearBikeContextAndRenderText(text1.featuresOfBike);
 })
+
+
 
 Elements.navSizeButton.on("click", (e) => {
     clearBikeContextAndRenderText(text1.sizeCalculator);
@@ -76,6 +92,9 @@ Elements.navBikesButton.on("click", (e) => {
             //bikeInfo must be selected after bike buttons are rendered with class bikeInfo
             //so can eventlistener be added to the buttons
             FetchAndEventBikeInfo(url);
+
+
+         
 
 
 
@@ -176,11 +195,75 @@ function FetchAndEventBikeInfo(url) {
 }
 
 
+// log In form
+// console.log("nikola");
+// console.log(logInElements.regForm);
+// logInElements.regForm.on("submit",(e) => {
+//     console.log("nikola");
+//        e.preventDefault();
+//        e.delegateTarget.preventDefault();
+//        e.target.preventDefault();
+//        console.log(e);
+//         const name = logInElements.name.val();
+//         const lastName = logInElements.lastName.val();
+//         const email = logInElements.regEmail.val();
+//         const pass1 = logInElements.pass1.val();
+//         const pass2 = logInElements.pass2.val();
+//         saveUser(name,lastName,email,pass1,pass2);
+//         console.log("works");
+    
+    
+       
+  
+  
+// })
 
 
 
+// make reference to the firebase
+var firebaseRef = firebase.database().ref('users');
 
 
 
+//fetch users from firebise
+fetch("https://frontend-project-with-firebase.firebaseio.com/users.json")
+.then(data => data.json())
+.then(data => console.log(data))
+.catch(err => console.log(err));
+
+
+
+logInElements.register.on("click", (e) => {
+   console.log(e);
+    clearBikeContextAndRenderText(text1.registerForm);
+    $("#regButton").on("click",(e) => {
+        console.log("nikola");
+           e.preventDefault();
+         
+          
+            const name = logInElements.regFirstName.val();
+            const lastName = logInElements.regLastName.val();
+            const email = logInElements.regEmail.val();
+            const pass1 = logInElements.regPassword.val();
+            const pass2 = logInElements.regConfirm.val();
+            saveUser(name,lastName,email,pass1,pass2);
+            console.log("works");
+        
+        
+           
+      
+      
+    })
+    
+   
+})
+
+
+// save user to database
+function saveUser(name,lastName,email,pass,pass2){
+    let user = new User(name,lastName,email)
+    var newfareBase = firebaseRef.push();
+    newfareBase.set(user);
+}
 
 
