@@ -5,6 +5,7 @@ export class RenderText {
         this.featuresOfBike =  this.gears() + this.wheelSize() + this.bikeSuspension() + this.breaks() + this.handlebar();
         this.sizeCalculator = this.sizeCalculatorInfo() + this.sizeClalculatorForm();
         this.registerForm = this.form();
+       
     }
 
     /* #region typesOfBike-Parts */
@@ -399,8 +400,8 @@ export class RenderText {
                 </div>
             </div>
             <div class="main-login main-center">
-                <form id="registerForm "class="form-horizontal"  action="">
-
+               
+            <form id="registerForms" "class="form-horizontal"  >
                     <div class="form-group">
                         <label for="name" class="cols-sm-2 control-label">First Name:</label>
                         <div class="cols-sm-10">
@@ -420,7 +421,7 @@ export class RenderText {
                             <span class="input-group-addon iconbk"><i class="fa fa-user-plus fa"
                                     aria-hidden="true"></i></span>
                             <input type="text" class="form-control formcontrolcls" name="lastName" id="lastName"
-                                placeholder="Enter your last name here" />
+                                placeholder="Enter your last name here" required />
                         </div>
                     </div>
                 </div>
@@ -431,8 +432,8 @@ export class RenderText {
                             <div class="input-group">
                                 <span class="input-group-addon iconbk"><i class="fa fa-envelope-o fa"
                                         aria-hidden="true"></i></span>
-                                <input type="text" class="form-control formcontrolcls" name="email" id="regEmail"
-                                    placeholder="Enter your Email here" />
+                                <input type="email" class="form-control formcontrolcls" name="email" id="regEmail"
+                                    placeholder="Enter your Email here" required />
                             </div>
                         </div>
                     </div>
@@ -446,7 +447,7 @@ export class RenderText {
                                 <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lock "
                                         aria-hidden="true"></i></span>
                                 <input type="password" class="form-control formcontrolcls" name="regPassword"
-                                    id="password" placeholder="Password: Must be 8 char long" />
+                                    id="password" placeholder="Password: Must be 8 char long" required />
                             </div>
                         </div>
                     </div>
@@ -458,16 +459,18 @@ export class RenderText {
                                 <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lock"
                                         aria-hidden="true"></i></span>
                                 <input type="password" class="form-control formcontrolcls" name="confirm"
-                                    id="confirm" placeholder="Confirm Password" />
+                                    id="confirm" placeholder="Confirm Password" required />
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group ">
-                        <button id="regButton" type="submit" class="btn btn-info btn-lg btn-block login-button">Create
-                            Account</button>
+                        <input id="regButton" type="submit" class="btn btn-info btn-lg btn-block login-button value="submit">
+                        
                     </div>
-
+                    <div class="alertReg">
+                   you have been registered!
+                 </div>
                 </form>
             </div>
         </div>
@@ -476,5 +479,33 @@ export class RenderText {
         `
     }
 
+static showUserManu(userName){
+    return `
+   
+    <ul class="nav justify-content-end">
 
+
+                    <li class="nav-items dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            aria-expanded="false">Account</a>
+                        <div class="dropdown-menu">
+                            <a id="favBikes" class="dropdown-item href="#">Favorite bikes</a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">User settings</a>
+                            <a id="logOut" class="dropdown-item" href="#">LogOut</a>
+                        </div>
+                    </li>
+                    <li class="nav-items">
+                        <span class="navbar-text userWelcome nav-link">
+                            Welcome: ${userName}
+                        </span>
+                    </li>
+
+                </ul>
+            `
 }
+}
+
+//<button id="regButton" type="submit" class="btn btn-info btn-lg btn-block login-button">Create
+//Account</button>

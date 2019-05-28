@@ -13,6 +13,10 @@ export const sortButton = $("#sortButton");
 export const asideNav = $(".asaid-nav");
 export const bikeInfo = $(".bikeInfo");
 
+export const logInText = $(".logInText");
+export const showUser = $("#showUser");
+
+
 
 
 

@@ -1,19 +1,15 @@
 export class User{
-    constructor(firstName, lastName, email){
+    constructor(firstName, lastName, email, password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this._password;
+        this.favBikes = [];
+        this.test = ["nikola"]
+        this.password = password;
 
     }
 
 
-    get password() {
-        return this._password
-    }
-    set password(value1) {
-       
-    }
-
+   
 
 }

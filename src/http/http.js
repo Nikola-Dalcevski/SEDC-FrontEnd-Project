@@ -17,4 +17,23 @@ export class Http {
         .catch(err => console.log(err));
 
     }
+
+    static fetchUser(url, email, pass){
+        return fetch(url)
+        .then(data => data.json())
+        .then(data => {
+            
+            let findUser;
+            for (const user in data) {
+                console.log("how many")
+                console.log(user);
+                console.log(user.email);
+                
+                  
+              
+                
+            }
+                   
+        })
+    }
 }

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Cabin|Indie+Flower" rel="stylesheet">
+    <script src="src/ruter/ruter.js"></script>
 
 </head>
 
@@ -25,26 +26,32 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li id="type" class="nav-item active">
-                    <a class="nav-link" href="#">Type of Bikes <span class="sr-only">(current)</span></a>
+            <ul class="navbar-nav mr-auto custom-nav">
+                <li id="type"  class="nav-item active">
+                    <a class="nav-link" href="#typeofBikes">Type of Bikes <span class="sr-only">(current)</span></a>
                 </li>
                 <li id="features" class="nav-item">
-                    <a class="nav-link" href="#">Bike Features</a>
+                    <a class="nav-link"  
+                    features" href="#/features">Bike Features</a>
                 </li>
                 <li id="size-calculator" class="nav-item dropdown">
-                    <a class="nav-link" href="#"> Size Calculator</a>
+                    <a class="nav-link"   href="#calculator"> Size Calculator</a>
                 </li>
                 <li id="bikes" class="nav-item">
-                    <a class="nav-link" href="#">Explore Bikes</a>
+                    <a class="nav-link"   href="#exploreBikes">Explore Bikes</a>
                 </li>
+
             </ul>
+            <div id="showUser">
+                
+            </div>
             <div class="logInText">
+
 
                 <form id="logInForm" class="form-inline my-2 my-lg-0 ">
                     <input id="email" type="email" class="form-control-sm  mr-sm-2 " placeholder="Email">
                     <input id="pass" type="password" class="form-control-sm  mr-sm-2" placeholder="Password"> <br>
-                    <button id="logBtn" type="submit" class="btn-primary " id="but">Log in</button>
+                    <button id="logBtn" type="submit" class="btn-primary ">Log in</button>
                 </form>
                 <a id="reg" class="register " href="#">register</a>
             </div>
@@ -54,7 +61,7 @@
 
         </div>
     </nav>
-  
+
 
 
     <main id="main" class="container main">
@@ -104,97 +111,32 @@
             <!--change it back in col lg 9-->
 
             <div class="col-lg-9 row " id="showBikes">
-                <div class="container">
-                    <div class="row main">
-                        <div class="panel-heading">
-                            <div class="panel-title text-center">
-                                <h1 class="title">Create Account</h1>
-                                <hr />
-                            </div>
-                        </div>
-                        <div class="main-login main-center">
-                            <form id="registerForm " class="form-horizontal"  action="">
-            
-                                <div class="form-group">
-                                    <label for="name" class="cols-sm-2 control-label">First Name:</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon iconbk"><i class="fa fa-user-plus fa"
-                                                    aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control formcontrolcls" name="name" id="name"
-                                                placeholder="Enter your first name here"  required />
-                                        </div>
-                                    </div>
-                                </div>
-            
-                                <div class="form-group">
-                                <label for="lastName" class="cols-sm-2 control-label">Last Name:</label>
-                                <div class="cols-sm-10">
-                                    <div class="input-group">
-                                        <span class="input-group-addon iconbk"><i class="fa fa-user-plus fa"
-                                                aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control formcontrolcls" name="lastName" id="lastName"
-                                            placeholder="Enter your last name here" />
-                                    </div>
-                                </div>
-                            </div>
-            
-                                <div class="form-group">
-                                    <label for="email" class="cols-sm-2 control-label">Email:</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon iconbk"><i class="fa fa-envelope-o fa"
-                                                    aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control formcontrolcls" name="email" id="regEmail"
-                                                placeholder="Enter your Email here" />
-                                        </div>
-                                    </div>
-                                </div>
-            
-                               
-            
-                                <div class="form-group">
-                                    <label for="password" class="cols-sm-2 control-label">Password:</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lock "
-                                                    aria-hidden="true"></i></span>
-                                            <input type="password" class="form-control formcontrolcls" name="regPassword"
-                                                id="password" placeholder="Password: Must be 8 char long" />
-                                        </div>
-                                    </div>
-                                </div>
-            
-                                <div class="form-group">
-                                    <label for="confirm" class="cols-sm-2 control-label">Re-enter Password:</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lock"
-                                                    aria-hidden="true"></i></span>
-                                            <input type="password" class="form-control formcontrolcls" name="confirm"
-                                                id="confirm" placeholder="Confirm Password" />
-                                        </div>
-                                    </div>
-                                </div>
-            
-                                <div class="form-group ">
-                                    <button id="regButton" type="submit" class="btn btn-info btn-lg btn-block login-button">Create
-                                        Account</button>
-                                </div>
-            
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
+
+
             </div>
 
 
     </main>
-    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
-    <!-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script> -->
+
+    <!-- Firebase scripts -->
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
 
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+        
     <script type="text/javascript" src="build/app.all.js"></script>
+</body>
+
+<body>
+
 </body>
 
 </html>
